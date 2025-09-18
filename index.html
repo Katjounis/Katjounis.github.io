@@ -1,11 +1,317 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
-    <title>Mon Portfolio</title>
-  </head>
-  <body>
-    <h1>Bienvenue sur mon site 🚀</h1>
-    <p>Je suis étudiant passionné de code et design.</p>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de développeur - Automatisations, Scripts Python, Design">
+    <title>Portfolio - Développeur</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body>
+    <!-- Header avec navigation principale -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <!-- Logo/Nom -->
+                <div class="nav-logo">
+                    <h2>Portfolio</h2>
+                </div>
+
+                <!-- Navigation desktop -->
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-section="home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="projects">Projets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Bouton thème et menu burger -->
+                <div class="nav-controls">
+                    <button class="theme-toggle" aria-label="Basculer le thème">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="main">
+        <!-- Section Accueil -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Développeur & <span class="text-primary">Automatiseur</span>
+                        </h1>
+                        <p class="hero-description">
+                            Je transforme vos idées en solutions digitales efficaces. 
+                            Spécialisé dans l'automatisation, le développement Python et le design moderne.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" data-section="projects">Voir mes projets</button>
+                            <button class="btn btn-secondary" data-section="contact">Me contacter</button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-placeholder">
+                            <span>👨‍💻</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Mes Projets</h2>
+                <p class="section-description">Découvrez quelques-unes de mes réalisations récentes</p>
+                
+                <div class="projects-grid">
+                    <!-- Projet 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder">📊</div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Automatisation Google Sheets</h3>
+                            <p class="project-description">
+                                Script Python pour automatiser la génération de rapports et l'analyse de données.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Google Sheets API</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#" class="btn-link">Voir le code</a>
+                                <a href="#" class="btn-link">Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder">🤖</div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Bot de Trading</h3>
+                            <p class="project-description">
+                                Application Python pour l'automatisation de stratégies de trading avec interface web.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">API</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#" class="btn-link">Voir le code</a>
+                                <a href="#" class="btn-link">Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder">🎨</div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Site Web Responsive</h3>
+                            <p class="project-description">
+                                Site vitrine moderne avec design responsive et optimisations SEO.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">HTML/CSS</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Responsive</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#" class="btn-link">Voir le code</a>
+                                <a href="#" class="btn-link">Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Services -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">Mes Services</h2>
+                <p class="section-description">Solutions personnalisées pour vos besoins digitaux</p>
+                
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card">
+                        <div class="service-icon">📈</div>
+                        <h3 class="service-title">Automatisations Google Sheets</h3>
+                        <p class="service-description">
+                            Création de scripts personnalisés pour automatiser vos tâches répétitives, 
+                            génération de rapports et synchronisation de données.
+                        </p>
+                        <ul class="service-features">
+                            <li>Scripts Google Apps Script</li>
+                            <li>Intégration API</li>
+                            <li>Rapports automatisés</li>
+                            <li>Dashboard personnalisés</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card">
+                        <div class="service-icon">🐍</div>
+                        <h3 class="service-title">Scripts Python</h3>
+                        <p class="service-description">
+                            Développement d'applications Python pour automatiser vos processus métier, 
+                            analyse de données et création d'outils sur mesure.
+                        </p>
+                        <ul class="service-features">
+                            <li>Scripts d'automatisation</li>
+                            <li>Web scraping</li>
+                            <li>Analyse de données</li>
+                            <li>Applications desktop</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3 class="service-title">Design & Développement Web</h3>
+                        <p class="service-description">
+                            Création de sites web modernes, interfaces utilisateur intuitives et 
+                            optimisation de l'expérience utilisateur.
+                        </p>
+                        <ul class="service-features">
+                            <li>Sites web responsive</li>
+                            <li>UI/UX Design</li>
+                            <li>Optimisation SEO</li>
+                            <li>Maintenance et support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Blog -->
+        <section id="blog" class="section">
+            <div class="container">
+                <h2 class="section-title">Blog</h2>
+                <p class="section-description">Articles et tutoriels sur le développement et l'automatisation</p>
+                
+                <div class="blog-placeholder">
+                    <div class="placeholder-content">
+                        <span class="placeholder-icon">📝</span>
+                        <h3>Bientôt disponible</h3>
+                        <p>Cette section contiendra des articles sur le développement, l'automatisation et mes retours d'expérience.</p>
+                        <div class="coming-soon">
+                            <span>Articles à venir :</span>
+                            <ul>
+                                <li>• Automatiser Google Sheets avec Python</li>
+                                <li>• Guide complet des API REST</li>
+                                <li>• Optimisation de performances web</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-description">Discutons de votre projet ensemble</p>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Parlons de votre projet</h3>
+                        <p>
+                            Je suis toujours intéressé par de nouveaux défis et collaborations. 
+                            N'hésitez pas à me contacter pour discuter de vos besoins.
+                        </p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <span class="contact-icon">📧</span>
+                                <span>email@example.com</span>
+                            </div>
+                            <div class="contact-method">
+                                <span class="contact-icon">📱</span>
+                                <span>+33 X XX XX XX XX</span>
+                            </div>
+                            <div class="contact-method">
+                                <span class="contact-icon">📍</span>
+                                <span>France</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="saveDraft">
+                                Sauvegarder le brouillon
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Envoyer le message
+                            </button>
+                        </div>
+                        
+                        <div class="form-note">
+                            <small>* Vos données sont protégées et ne seront utilisées que pour vous recontacter.</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; <span id="currentYear"></span> Portfolio. Tous droits réservés.</p>
+                <a href="#" class="footer-link" data-section="contact">Me contacter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="app.js"></script>
+</body>
 </html>
