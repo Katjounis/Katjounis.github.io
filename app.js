@@ -1,6 +1,6 @@
 // Variables globales
-let currentTab = 'accueil';
-let formSubmitted = false;
+let currentSection = 'home';
+let isMenuOpen = false;
 
 // Initialisation de l'application
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,63 +8,73 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     setupFormValidation();
     setupScrollAnimations();
+    setupMobileMenu();
 });
 
 // Initialisation de l'application
 function initializeApp() {
-    // Afficher l'onglet par défaut
-    showTab('accueil');
+    // Afficher la section par défaut
+    showSection('home');
     
-    // Configuration du menu mobile
-    setupMobileMenu();
-    
-    // Animation d'apparition
+    // Animation d'apparition progressive
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
+    
     setTimeout(() => {
         document.body.style.opacity = '1';
+        // Déclencher les animations de la section home
+        triggerSectionAnimations('home');
     }, 100);
+    
+    // Précharger les animations des barres de compétences
+    preloadSkillBars();
 }
 
 // Configuration des écouteurs d'événements
 function setupEventListeners() {
     // Navigation
-    const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-            showTab(tabName);
-        });
-    });
-    
-    // Boutons CTA du hero
-    const ctaButtons = document.querySelectorAll('.hero-cta .btn-primary, .hero-cta .btn-secondary');
-    ctaButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.textContent.includes('devis')) {
-                showTab('contact');
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const section = this.getAttribute('data-section');
+            showSection(section);
+            
+            // Fermer le menu mobile si ouvert
+            if (isMenuOpen) {
+                toggleMobileMenu();
             }
         });
     });
     
-    // Cards de prévisualisation
-    const previewCards = document.querySelectorAll('.preview-card');
-    previewCards.forEach(card => {
+    // Boutons CTA
+    const ctaButtons = document.querySelectorAll('.btn');
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Ajouter effet de ripple
+            createRippleEffect(this, event);
+        });
+    });
+    
+    // Cards de service
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
         card.addEventListener('click', function() {
-            // Détermine l'onglet basé sur le contenu de la card
-            if (this.textContent.includes('Web')) {
-                showTab('code');
-            } else if (this.textContent.includes('3D')) {
-                showTab('revit');
-            } else if (this.textContent.includes('Tatouage')) {
-                showTab('tatouage');
+            // Déterminer la section basée sur le contenu
+            const content = this.textContent.toLowerCase();
+            if (content.includes('développement') || content.includes('web')) {
+                showSection('code');
+            } else if (content.includes('revit') || content.includes('cao')) {
+                showSection('revit');
+            } else if (content.includes('tatouage') || content.includes('design')) {
+                showSection('tattoo');
             }
         });
     });
     
     // Smooth scroll pour les ancres
     document.addEventListener('click', function(e) {
-        if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+        if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#')) {
             e.preventDefault();
             const targetId = e.target.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
@@ -73,85 +83,178 @@ function setupEventListeners() {
             }
         }
     });
+    
+    // Gestion du scroll pour la navbar
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scroll vers le bas - cacher la navbar
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            // Scroll vers le haut - montrer la navbar
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
 }
 
-// Fonction pour changer d'onglet
-function showTab(tabName) {
-    // Masquer tous les contenus d'onglets
-    const allTabs = document.querySelectorAll('.tab-content');
-    allTabs.forEach(tab => {
-        tab.classList.remove('active');
+// Fonction pour changer de section
+function showSection(sectionName) {
+    // Masquer toutes les sections
+    const allSections = document.querySelectorAll('.section');
+    allSections.forEach(section => {
+        section.classList.remove('active');
     });
     
-    // Désactiver tous les boutons de navigation
-    const allNavButtons = document.querySelectorAll('.nav-btn');
-    allNavButtons.forEach(button => {
-        button.classList.remove('active');
+    // Désactiver tous les liens de navigation
+    const allNavLinks = document.querySelectorAll('.nav-link');
+    allNavLinks.forEach(link => {
+        link.classList.remove('active');
     });
     
-    // Afficher l'onglet sélectionné
-    const targetTab = document.getElementById(tabName);
-    if (targetTab) {
-        targetTab.classList.add('active');
-        currentTab = tabName;
+    // Afficher la section sélectionnée
+    const targetSection = document.getElementById(sectionName);
+    if (targetSection) {
+        targetSection.classList.add('active');
+        currentSection = sectionName;
         
-        // Activer le bouton de navigation correspondant
-        const activeButton = document.querySelector(`[data-tab="${tabName}"]`);
-        if (activeButton) {
-            activeButton.classList.add('active');
+        // Activer le lien de navigation correspondant
+        const activeLink = document.querySelector(`[data-section="${sectionName}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
         }
         
         // Scroll vers le haut
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        // Déclencher les animations spécifiques à l'onglet
-        triggerTabAnimations(tabName);
+        // Déclencher les animations spécifiques à la section
+        setTimeout(() => {
+            triggerSectionAnimations(sectionName);
+        }, 100);
+        
+        // Animer les barres de compétences si c'est une section avec des compétences
+        if (['code', 'revit', 'tattoo'].includes(sectionName)) {
+            setTimeout(() => {
+                animateSkillBars(sectionName);
+            }, 500);
+        }
     }
 }
 
-// Animations spécifiques aux onglets
-function triggerTabAnimations(tabName) {
-    const tab = document.getElementById(tabName);
-    if (!tab) return;
+// Animations spécifiques aux sections
+function triggerSectionAnimations(sectionName) {
+    const section = document.getElementById(sectionName);
+    if (!section) return;
     
-    // Animation pour les cards
-    const cards = tab.querySelectorAll('.project-card, .service-card, .preview-card, .skill-item');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        
+    // Réinitialiser les animations
+    const animatedElements = section.querySelectorAll('.service-card, .project-card, .tech-item, .process-step, .visual-card');
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+    });
+    
+    // Déclencher les animations avec des délais
+    animatedElements.forEach((element, index) => {
         setTimeout(() => {
-            card.style.transition = 'all 0.5s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
+            element.style.transition = 'all 0.6s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
         }, index * 100 + 200);
     });
     
-    // Animation pour les étapes du processus
-    const steps = tab.querySelectorAll('.process-step');
-    steps.forEach((step, index) => {
-        step.style.opacity = '0';
-        step.style.transform = 'scale(0.8)';
+    // Animations spéciales pour la section home
+    if (sectionName === 'home') {
+        const heroText = section.querySelector('.hero-text');
+        const heroVisual = section.querySelector('.hero-visual');
         
+        if (heroText) {
+            heroText.style.opacity = '0';
+            heroText.style.transform = 'translateX(-50px)';
+            setTimeout(() => {
+                heroText.style.transition = 'all 0.8s ease';
+                heroText.style.opacity = '1';
+                heroText.style.transform = 'translateX(0)';
+            }, 300);
+        }
+        
+        if (heroVisual) {
+            heroVisual.style.opacity = '0';
+            heroVisual.style.transform = 'translateX(50px)';
+            setTimeout(() => {
+                heroVisual.style.transition = 'all 0.8s ease';
+                heroVisual.style.opacity = '1';
+                heroVisual.style.transform = 'translateX(0)';
+            }, 500);
+        }
+    }
+}
+
+// Animation des barres de compétences
+function preloadSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0%';
+        bar.setAttribute('data-width', width);
+    });
+}
+
+function animateSkillBars(sectionName) {
+    const section = document.getElementById(sectionName);
+    const skillBars = section.querySelectorAll('.skill-progress');
+    
+    skillBars.forEach((bar, index) => {
         setTimeout(() => {
-            step.style.transition = 'all 0.4s ease';
-            step.style.opacity = '1';
-            step.style.transform = 'scale(1)';
-        }, index * 150 + 300);
+            const targetWidth = bar.getAttribute('data-width');
+            bar.style.transition = 'width 1.5s ease';
+            bar.style.width = targetWidth;
+        }, index * 200);
     });
 }
 
 // Configuration du menu mobile
 function setupMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-toggle');
-    const nav = document.querySelector('.nav');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
     
-    if (mobileToggle && nav) {
-        mobileToggle.addEventListener('click', function() {
-            nav.classList.toggle('show');
-            this.innerHTML = nav.classList.contains('show') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', toggleMobileMenu);
+        
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', function(e) {
+            if (isMenuOpen && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                toggleMobileMenu();
+            }
         });
+    }
+}
+
+function toggleMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    isMenuOpen = !isMenuOpen;
+    
+    if (isMenuOpen) {
+        navMenu.classList.add('active');
+        hamburger.classList.add('active');
+        // Animation du hamburger
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+    } else {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        // Réinitialiser le hamburger
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
     }
 }
 
@@ -259,9 +362,19 @@ function showFieldError(field, message) {
     const errorElement = document.createElement('div');
     errorElement.className = 'error-message';
     errorElement.textContent = message;
-    errorElement.style.color = 'var(--error-color)';
-    errorElement.style.fontSize = '0.875rem';
-    errorElement.style.marginTop = '0.25rem';
+    errorElement.style.cssText = `
+        color: var(--error-color);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    `;
+    
+    // Ajouter une icône d'erreur
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-exclamation-circle';
+    errorElement.insertBefore(icon, errorElement.firstChild);
     
     field.parentNode.appendChild(errorElement);
 }
@@ -281,7 +394,7 @@ function handleFormSubmission(form) {
     const formData = new FormData(form);
     let isFormValid = true;
     
-    // Valider tous les champs
+    // Valider tous les champs requis
     const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
     requiredFields.forEach(field => {
         if (!validateField(field)) {
@@ -296,7 +409,7 @@ function handleFormSubmission(form) {
     
     // Désactiver le bouton de soumission
     const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
+    const originalText = submitButton.innerHTML;
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
     
@@ -304,18 +417,17 @@ function handleFormSubmission(form) {
     setTimeout(() => {
         // Réactiver le bouton
         submitButton.disabled = false;
-        submitButton.textContent = originalText;
+        submitButton.innerHTML = originalText;
         
         // Afficher un message de succès
         showNotification('Votre demande a été envoyée avec succès ! Je vous recontacterai rapidement.', 'success');
         
         // Réinitialiser le formulaire
         form.reset();
-        formSubmitted = true;
         
         // Optionnel : rediriger vers l'accueil après quelques secondes
         setTimeout(() => {
-            showTab('accueil');
+            showSection('home');
         }, 3000);
         
     }, 2000);
@@ -361,26 +473,33 @@ function showNotification(message, type = 'info') {
         backgroundColor: 'white',
         color: colors[type],
         padding: '1rem 1.5rem',
-        borderRadius: '0.5rem',
-        boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
+        borderRadius: '0.75rem',
+        boxShadow: 'var(--shadow-xl)',
         borderLeft: `4px solid ${colors[type]}`,
         zIndex: '10000',
         display: 'flex',
         alignItems: 'center',
         gap: '0.75rem',
         maxWidth: '400px',
-        animation: 'slideInRight 0.3s ease'
+        minWidth: '300px',
+        animation: 'slideInRight 0.3s ease',
+        backdropFilter: 'blur(10px)'
     });
     
-    notification.querySelector('.close-btn').style.cssText = `
-        background: none;
-        border: none;
-        color: ${colors[type]};
-        cursor: pointer;
-        font-size: 0.875rem;
-        opacity: 0.7;
-        transition: opacity 0.2s ease;
-    `;
+    const closeBtn = notification.querySelector('.close-btn');
+    Object.assign(closeBtn.style, {
+        background: 'none',
+        border: 'none',
+        color: colors[type],
+        cursor: 'pointer',
+        fontSize: '0.875rem',
+        opacity: '0.7',
+        transition: 'opacity 0.2s ease',
+        padding: '0.25rem'
+    });
+    
+    closeBtn.addEventListener('mouseenter', () => closeBtn.style.opacity = '1');
+    closeBtn.addEventListener('mouseleave', () => closeBtn.style.opacity = '0.7');
     
     document.body.appendChild(notification);
     
@@ -403,21 +522,56 @@ function setupScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                entry.target.classList.add('animate-fade-in-up');
             }
         });
     }, observerOptions);
     
     // Observer tous les éléments animables
-    const animatableElements = document.querySelectorAll('.service-card, .project-card, .skill-item, .process-step, .contact-info, .contact-form');
+    const animatableElements = document.querySelectorAll('.service-card, .project-card, .tech-item, .process-step, .contact-card, .contact-form-container');
     animatableElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
         observer.observe(el);
     });
 }
 
-// Fonction utilitaire pour obtenir les données du formulaire
+// Effet de ripple pour les boutons
+function createRippleEffect(button, event) {
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    `;
+    
+    button.style.position = 'relative';
+    button.style.overflow = 'hidden';
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// Fonctions utilitaires
+function scrollToPortfolio() {
+    const portfolioSection = document.querySelector('.services-overview');
+    if (portfolioSection) {
+        portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 function getFormData() {
     const form = document.getElementById('contactForm');
     if (!form) return {};
@@ -432,16 +586,16 @@ function getFormData() {
     return data;
 }
 
-// Fonction pour exporter les données (pour développement)
-function exportFormData() {
-    const data = getFormData();
-    console.log('Données du formulaire:', data);
-    return data;
-}
-
 // Ajout de styles CSS pour les animations via JavaScript
 const style = document.createElement('style');
 style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+    
     @keyframes slideInRight {
         from {
             transform: translateX(100%);
@@ -464,34 +618,12 @@ style.textContent = `
         }
     }
     
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .navbar {
+        transition: transform 0.3s ease;
     }
     
-    .nav.show {
-        display: flex !important;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        padding: 1rem;
-        box-shadow: var(--shadow);
-        border-radius: 0 0 0.5rem 0.5rem;
-    }
-    
-    @media (max-width: 768px) {
-        .nav {
-            display: none;
-        }
+    .hamburger span {
+        transition: all 0.3s ease;
     }
 `;
 
@@ -499,7 +631,8 @@ document.head.appendChild(style);
 
 // Export des fonctions principales pour utilisation externe
 window.portfolioApp = {
-    showTab,
+    showSection,
     getFormData,
-    exportFormData
+    scrollToPortfolio,
+    toggleMobileMenu
 };
