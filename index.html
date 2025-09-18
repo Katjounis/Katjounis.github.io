@@ -3,687 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Professionnel - Développeur • Expert Revit/CAO • Designer Tatouage</title>
-    <meta name="description" content="Portfolio professionnel : Développement web Python, modélisation Revit/CAO, designs de tatouage. Services créatifs et techniques sur mesure.">
+    <title>Portfolio - Développeur & Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation fixe -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-text">Portfolio</span>
-                <span class="logo-accent">Pro</span>
-                <div class="logo-dot"></div>
+                <h1>Portfolio</h1>
             </div>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link active" data-section="home"><i class="fas fa-home"></i>Accueil</a></li>
-                <li><a href="#" class="nav-link" data-section="code"><i class="fas fa-code"></i>Développement</a></li>
-                <li><a href="#" class="nav-link" data-section="revit"><i class="fas fa-cube"></i>Revit/CAO</a></li>
-                <li><a href="#" class="nav-link" data-section="tattoo"><i class="fas fa-palette"></i>Tatouage</a></li>
-                <li><a href="#" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i>Contact</a></li>
+                <li class="nav-item">
+                    <a href="#projets" class="nav-link active" data-section="projets">
+                        <span class="nav-icon">💻</span>
+                        Projets de code
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#revit" class="nav-link" data-section="revit">
+                        <span class="nav-icon">🏗️</span>
+                        Revit/AutoCAD
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#affiches" class="nav-link" data-section="affiches">
+                        <span class="nav-icon">🎨</span>
+                        Affiches
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tatouages" class="nav-link" data-section="tatouages">
+                        <span class="nav-icon">✨</span>
+                        Tatouages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-section="contact">
+                        <span class="nav-icon">📧</span>
+                        Contact
+                    </a>
+                </li>
             </ul>
             <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="section active">
-        <div class="hero">
-            <div class="hero-background">
-                <div class="floating-shapes" data-speed="0.3">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                    <div class="shape shape-4"></div>
-                    <div class="shape shape-5"></div>
-                    <div class="shape shape-6"></div>
-                </div>
-                <div class="gradient-overlay"></div>
-            </div>
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">
-                        <i class="fas fa-star"></i>
-                        Créateur Digital & Technique
-                    </div>
-                    <h1 class="hero-title">
-                        <span class="title-line">Développeur</span>
-                        <span class="title-line gradient-text">Expert Technique</span>
-                        <span class="title-line">& Designer</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        Spécialisé en <strong>Développement Python</strong> • <strong>Modélisation Revit/CAO</strong> • <strong>Design de Tatouage</strong>
-                    </p>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">3+</span>
-                            <span class="stat-label">Domaines d'expertise</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Satisfaction client</span>
-                        </div>
-                    </div>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="showSection('contact')">
-                            <i class="fas fa-rocket"></i>
-                            <span>Démarrer un projet</span>
-                            <div class="btn-glow"></div>
-                        </button>
-                        <button class="btn btn-secondary" onclick="scrollToPortfolio()">
-                            <i class="fas fa-eye"></i>
-                            <span>Voir mes créations</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="visual-card" onclick="showSection('code')">
-                        <div class="card-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Développement Web</h3>
-                            <p>Python • React • Sites modernes</p>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                    <div class="visual-card" onclick="showSection('revit')">
-                        <div class="card-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Modélisation 3D</h3>
-                            <p>Revit • CAO • Visualisations</p>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                    <div class="visual-card" onclick="showSection('tattoo')">
-                        <div class="card-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Design Artistique</h3>
-                            <p>Tatouages • Créations uniques</p>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Services Overview -->
-        <div class="services-overview">
+    <!-- Contenu principal -->
+    <main class="main-content">
+        <!-- Section Projets de code -->
+        <section id="projets" class="section active">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Mes Expertises</h2>
-                    <p class="section-subtitle">Des compétences techniques et créatives au service de vos projets</p>
+                    <h2 class="section-title">Projets de Code</h2>
+                    <p class="section-subtitle">Découvrez mes créations web avec aperçus interactifs</p>
                 </div>
-                <div class="services-grid">
-                    <div class="service-card" onclick="showSection('code')">
-                        <div class="service-icon">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>Développement Python & Web</h3>
-                            <p>Applications web modernes, automatisation, sites e-commerce, dashboards interactifs avec Python et les dernières technologies web.</p>
-                            <div class="service-tech">
-                                <span>Python</span>
-                                <span>React</span>
-                                <span>JavaScript</span>
-                                <span>Node.js</span>
-                            </div>
-                        </div>
-                        <div class="service-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                    <div class="service-card" onclick="showSection('revit')">
-                        <div class="service-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>Modélisation Revit & CAO</h3>
-                            <p>Plans architecturaux, modèles BIM complets, visualisations 3D photoréalistes, conception technique professionnelle.</p>
-                            <div class="service-tech">
-                                <span>Revit</span>
-                                <span>AutoCAD</span>
-                                <span>BIM</span>
-                                <span>3D</span>
-                            </div>
-                        </div>
-                        <div class="service-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                    <div class="service-card" onclick="showSection('tattoo')">
-                        <div class="service-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>Design de Tatouage</h3>
-                            <p>Créations artistiques personnalisées, tous styles, du concept au tatouage final avec attention aux détails et originalité.</p>
-                            <div class="service-tech">
-                                <span>Réalisme</span>
-                                <span>Japonais</span>
-                                <span>Géométrique</span>
-                                <span>Custom</span>
-                            </div>
-                        </div>
-                        <div class="service-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Code Section -->
-    <section id="code" class="section">
-        <div class="section-header">
-            <div class="container">
-                <h2 class="section-title">Développement Web & Python</h2>
-                <p class="section-subtitle">Applications sur mesure avec Python et technologies web modernes</p>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="skills-showcase">
-                <h3>Technologies Maîtrisées</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <span>Python</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-js-square"></i>
-                        </div>
-                        <span>JavaScript/React</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fab fa-node-js"></i>
-                        </div>
-                        <span>Node.js</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <span>Bases de données</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 86%"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projects-showcase">
-                <h3>Projets Développement</h3>
+                
                 <div class="projects-grid">
+                    <!-- Projet 1 -->
                     <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-overlay">
-                                <i class="fab fa-python"></i>
+                        <div class="project-header">
+                            <h3 class="project-title">Projet Web Moderne</h3>
+                            <div class="project-links">
+                                <a href="#" class="project-link" target="_blank">
+                                    <span class="link-icon">🔗</span>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link" target="_blank">
+                                    <span class="link-icon">🌐</span>
+                                    Live Demo
+                                </a>
                             </div>
                         </div>
-                        <div class="project-content">
-                            <h4>Application Python</h4>
-                            <p>Développement d'outils d'automatisation et applications desktop avec interface moderne.</p>
-                            <div class="project-tags">
-                                <span>Python</span>
-                                <span>Tkinter</span>
-                                <span>API</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-overlay">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Sites Web Modernes</h4>
-                            <p>Création de sites web responsives avec design contemporain et fonctionnalités avancées.</p>
-                            <div class="project-tags">
-                                <span>React</span>
-                                <span>CSS3</span>
-                                <span>Responsive</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-overlay">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Dashboards & Analytics</h4>
-                            <p>Tableaux de bord interactifs pour visualisation de données et analyses en temps réel.</p>
-                            <div class="project-tags">
-                                <span>Python</span>
-                                <span>Data Viz</span>
-                                <span>API REST</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Revit Section -->
-    <section id="revit" class="section">
-        <div class="section-header">
-            <div class="container">
-                <h2 class="section-title">Modélisation Revit & CAO</h2>
-                <p class="section-subtitle">Maîtrise complète de Revit pour projets architecturaux et techniques</p>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="skills-showcase">
-                <h3>Logiciels Maîtrisés</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <span>Autodesk Revit</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 94%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-drafting-compass"></i>
-                        </div>
-                        <span>AutoCAD</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 89%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-project-diagram"></i>
-                        </div>
-                        <span>Modélisation BIM</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 91%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <span>Rendu 3D</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projects-showcase">
-                <h3>Projets Revit/CAO</h3>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image revit-bg">
-                            <div class="project-overlay">
-                                <i class="fas fa-home"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Modélisation Résidentielle</h4>
-                            <p>Modèles Revit complets pour projets résidentiels avec plans techniques détaillés.</p>
-                            <div class="project-tags">
-                                <span>Revit</span>
-                                <span>Plans</span>
-                                <span>BIM</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image revit-bg">
-                            <div class="project-overlay">
-                                <i class="fas fa-industry"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Projets Techniques</h4>
-                            <p>Conception technique avec calculs structurels et plans d'exécution professionnels.</p>
-                            <div class="project-tags">
-                                <span>CAO</span>
-                                <span>Structure</span>
-                                <span>Technique</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image revit-bg">
-                            <div class="project-overlay">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Visualisations 3D</h4>
-                            <p>Rendus photoréalistes et visualisations architecturales pour présentation client.</p>
-                            <div class="project-tags">
-                                <span>3D</span>
-                                <span>Rendu</span>
-                                <span>Visualisation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tattoo Section -->
-    <section id="tattoo" class="section">
-        <div class="section-header">
-            <div class="container">
-                <h2 class="section-title">Design de Tatouage</h2>
-                <p class="section-subtitle">Créations artistiques personnalisées dans tous les styles</p>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="skills-showcase">
-                <h3>Styles Artistiques</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <span>Réalisme</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 93%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-yin-yang"></i>
-                        </div>
-                        <span>Style Japonais</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-shapes"></i>
-                        </div>
-                        <span>Géométrique</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-feather-alt"></i>
-                        </div>
-                        <span>Fine Line</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projects-showcase">
-                <h3>Créations de Tatouage</h3>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image tattoo-bg">
-                            <div class="project-overlay">
-                                <i class="fas fa-portrait"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Portraits Réalistes</h4>
-                            <p>Designs personnalisés en réalisme avec attention aux détails et ombrages précis.</p>
-                            <div class="project-tags">
-                                <span>Réalisme</span>
-                                <span>Portrait</span>
-                                <span>Custom</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image tattoo-bg">
-                            <div class="project-overlay">
-                                <i class="fas fa-dragon"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Style Japonais</h4>
-                            <p>Compositions traditionnelles avec dragons, vagues et éléments culturels authentiques.</p>
-                            <div class="project-tags">
-                                <span>Japonais</span>
-                                <span>Traditionnel</span>
-                                <span>Culture</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image tattoo-bg">
-                            <div class="project-overlay">
-                                <i class="fas fa-gem"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h4>Géométrie & Mandala</h4>
-                            <p>Motifs géométriques complexes et mandalas avec précision mathématique et symbolisme.</p>
-                            <div class="project-tags">
-                                <span>Géométrique</span>
-                                <span>Mandala</span>
-                                <span>Précision</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="process-section">
-                <h3>Processus de Création</h3>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="step-icon">
-                            <span>1</span>
-                        </div>
-                        <h4>Consultation</h4>
-                        <p>Discussion détaillée de votre vision et de vos préférences artistiques</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-icon">
-                            <span>2</span>
-                        </div>
-                        <h4>Création</h4>
-                        <p>Développement du design préliminaire selon vos spécifications</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-icon">
-                            <span>3</span>
-                        </div>
-                        <h4>Révisions</h4>
-                        <p>Ajustements personnalisés selon vos retours et demandes</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-icon">
-                            <span>4</span>
-                        </div>
-                        <h4>Finalisation</h4>
-                        <p>Design définitif optimisé et prêt pour la réalisation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="section-header">
-            <div class="container">
-                <h2 class="section-title">Démarrons Votre Projet</h2>
-                <p class="section-subtitle">Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé</p>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <h3>Informations de Contact</h3>
-                        <div class="contact-items">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <strong>Email</strong>
-                                    <span>contact@portfolio-pro.fr</span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <strong>Téléphone</strong>
-                                    <span>+33 1 23 45 67 89</span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <strong>Localisation</strong>
-                                    <span>France</span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <strong>Disponibilité</strong>
-                                    <span>Lun-Ven: 9h-18h</span>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="project-description">
+                            Application web responsive avec design moderne et animations fluides.
+                            Technologies : HTML5, CSS3, JavaScript ES6+
+                        </p>
                         
-                        <div class="social-section">
-                            <h4>Suivez mon travail</h4>
-                            <div class="social-links">
-                                <a href="#" class="social-link" title="LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
+                        <!-- Aperçu HTML -->
+                        <div class="project-preview">
+                            <div class="preview-header">
+                                <span class="preview-title">Aperçu interactif</span>
+                                <button class="toggle-code-btn" data-project="1">Voir le code</button>
+                            </div>
+                            <div class="preview-content">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 15px; color: white; text-align: center; font-family: 'Inter', sans-serif;">
+                                    <h2 style="margin: 0 0 20px 0; font-size: 2em; font-weight: 600;">Dashboard Analytics</h2>
+                                    <p style="margin: 0 0 30px 0; font-size: 1.1em; opacity: 0.9;">Interface moderne avec graphiques interactifs</p>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                                            <div style="font-size: 2em; margin-bottom: 5px;">📊</div>
+                                            <div style="font-size: 1.5em; font-weight: 600;">2.4k</div>
+                                            <div style="font-size: 0.9em; opacity: 0.8;">Vues</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                                            <div style="font-size: 2em; margin-bottom: 5px;">👥</div>
+                                            <div style="font-size: 1.5em; font-weight: 600;">1.2k</div>
+                                            <div style="font-size: 0.9em; opacity: 0.8;">Users</div>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                                            <div style="font-size: 2em; margin-bottom: 5px;">💰</div>
+                                            <div style="font-size: 1.5em; font-weight: 600;">€5.4k</div>
+                                            <div style="font-size: 0.9em; opacity: 0.8;">Revenue</div>
+                                        </div>
+                                    </div>
+                                    <button style="padding: 12px 30px; background: rgba(255,255,255,0.2); border: 2px solid white; border-radius: 25px; color: white; font-size: 1em; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">Voir les détails</button>
+                                </div>
+                            </div>
+                            <div class="code-content" id="code-1" style="display: none;">
+                                <pre><code>&lt;div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+     padding: 40px; border-radius: 15px; color: white; 
+     text-align: center; font-family: 'Inter', sans-serif;"&gt;
+  &lt;h2 style="margin: 0 0 20px 0; font-size: 2em; font-weight: 600;"&gt;
+    Dashboard Analytics
+  &lt;/h2&gt;
+  &lt;p style="margin: 0 0 30px 0; font-size: 1.1em; opacity: 0.9;"&gt;
+    Interface moderne avec graphiques interactifs
+  &lt;/p&gt;
+  &lt;div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+       gap: 20px; margin-bottom: 30px;"&gt;
+    &lt;div style="background: rgba(255,255,255,0.2); padding: 20px; 
+         border-radius: 10px; backdrop-filter: blur(10px);"&gt;
+      &lt;div style="font-size: 2em; margin-bottom: 5px;"&gt;📊&lt;/div&gt;
+      &lt;div style="font-size: 1.5em; font-weight: 600;"&gt;2.4k&lt;/div&gt;
+      &lt;div style="font-size: 0.9em; opacity: 0.8;"&gt;Vues&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Plus de cartes... --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Interface E-commerce</h3>
+                            <div class="project-links">
+                                <a href="#" class="project-link" target="_blank">
+                                    <span class="link-icon">🔗</span>
+                                    GitHub
                                 </a>
-                                <a href="#" class="social-link" title="GitHub">
-                                    <i class="fab fa-github"></i>
+                                <a href="#" class="project-link" target="_blank">
+                                    <span class="link-icon">🌐</span>
+                                    Live Demo
                                 </a>
-                                <a href="#" class="social-link" title="Instagram">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="social-link" title="Behance">
-                                    <i class="fab fa-behance"></i>
-                                </a>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Interface de boutique en ligne avec panier dynamique et système de paiement.
+                            Technologies : HTML5, CSS3, JavaScript, API REST
+                        </p>
+                        
+                        <div class="project-preview">
+                            <div class="preview-header">
+                                <span class="preview-title">Aperçu interactif</span>
+                                <button class="toggle-code-btn" data-project="2">Voir le code</button>
+                            </div>
+                            <div class="preview-content">
+                                <div style="background: #f8fafc; padding: 30px; border-radius: 15px; font-family: 'Inter', sans-serif;">
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                                            <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #ff6b6b, #ee5a24); border-radius: 12px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2em;">👟</div>
+                                            <h3 style="margin: 0 0 10px 0; color: #2d3748; font-weight: 600;">Sneakers Pro</h3>
+                                            <p style="margin: 0 0 15px 0; color: #718096; font-size: 0.9em;">Chaussures de sport premium</p>
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <span style="font-size: 1.2em; font-weight: 700; color: #2d3748;">€129</span>
+                                                <button style="background: #4299e1; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9em;" onmouseover="this.style.background='#3182ce'" onmouseout="this.style.background='#4299e1'">Ajouter</button>
+                                            </div>
+                                        </div>
+                                        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                                            <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #a8e6cf, #88d8a3); border-radius: 12px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2em;">👕</div>
+                                            <h3 style="margin: 0 0 10px 0; color: #2d3748; font-weight: 600;">T-shirt Design</h3>
+                                            <p style="margin: 0 0 15px 0; color: #718096; font-size: 0.9em;">Collection été 2024</p>
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <span style="font-size: 1.2em; font-weight: 700; color: #2d3748;">€45</span>
+                                                <button style="background: #48bb78; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9em;" onmouseover="this.style.background='#38a169'" onmouseout="this.style.background='#48bb78'">Ajouter</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="code-content" id="code-2" style="display: none;">
+                                <pre><code>&lt;div style="background: #f8fafc; padding: 30px; border-radius: 15px;"&gt;
+  &lt;div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+       gap: 20px;"&gt;
+    &lt;div style="background: white; padding: 20px; border-radius: 12px; 
+         box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;"&gt;
+      &lt;div style="width: 80px; height: 80px; 
+           background: linear-gradient(45deg, #ff6b6b, #ee5a24); 
+           border-radius: 12px; margin: 0 auto 15px;"&gt;👟&lt;/div&gt;
+      &lt;h3&gt;Sneakers Pro&lt;/h3&gt;
+      &lt;p&gt;Chaussures de sport premium&lt;/p&gt;
+      &lt;div style="display: flex; justify-content: space-between;"&gt;
+        &lt;span&gt;€129&lt;/span&gt;
+        &lt;button&gt;Ajouter&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="contact-form-container">
+        <!-- Section Revit/AutoCAD -->
+        <section id="revit" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Revit & AutoCAD</h2>
+                    <p class="section-subtitle">Plans architecturaux et modélisations 3D</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1546901/pexels-photo-1546901.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1546901/pexels-photo-1546901.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Plan architectural 1">
+                        <div class="gallery-overlay">
+                            <h3>Plan architectural moderne</h3>
+                            <p>Conception résidentielle 3D</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Modélisation 3D">
+                        <div class="gallery-overlay">
+                            <h3>Modélisation 3D</h3>
+                            <p>Rendu photoréaliste</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Plan technique">
+                        <div class="gallery-overlay">
+                            <h3>Plans techniques</h3>
+                            <p>Détails de construction</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Vue d'ensemble">
+                        <div class="gallery-overlay">
+                            <h3>Vue d'ensemble</h3>
+                            <p>Projet architectural complet</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Design intérieur">
+                        <div class="gallery-overlay">
+                            <h3>Design intérieur</h3>
+                            <p>Aménagement moderne</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Façade moderne">
+                        <div class="gallery-overlay">
+                            <h3>Façade moderne</h3>
+                            <p>Architecture contemporaine</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Affiches -->
+        <section id="affiches" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Affiches Promotionnelles</h2>
+                    <p class="section-subtitle">Créations graphiques pour événements et campagnes</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1666073/pexels-photo-1666073.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1666073/pexels-photo-1666073.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Affiche événement 1">
+                        <div class="gallery-overlay">
+                            <h3>Festival de Musique</h3>
+                            <p>Affiche événementielle 2024</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1666065/pexels-photo-1666065.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1666065/pexels-photo-1666065.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Affiche promotion">
+                        <div class="gallery-overlay">
+                            <h3>Campagne Publicitaire</h3>
+                            <p>Design moderne et impactant</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1666064/pexels-photo-1666064.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1666064/pexels-photo-1666064.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Affiche festival">
+                        <div class="gallery-overlay">
+                            <h3>Festival d'Art</h3>
+                            <p>Création artistique originale</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1666071/pexels-photo-1666071.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1666071/pexels-photo-1666071.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Affiche concert">
+                        <div class="gallery-overlay">
+                            <h3>Concert Live</h3>
+                            <p>Design énergique et coloré</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Tatouages -->
+        <section id="tatouages" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Designs de Tatouages</h2>
+                    <p class="section-subtitle">Créations artistiques et designs personnalisés</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1084656/pexels-photo-1084656.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1084656/pexels-photo-1084656.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Design tribal">
+                        <div class="gallery-overlay">
+                            <h3>Design Tribal</h3>
+                            <p>Motifs traditionnels modernisés</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1084304/pexels-photo-1084304.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1084304/pexels-photo-1084304.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Design floral">
+                        <div class="gallery-overlay">
+                            <h3>Design Floral</h3>
+                            <p>Compositions botaniques délicates</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1084302/pexels-photo-1084302.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1084302/pexels-photo-1084302.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Design géométrique">
+                        <div class="gallery-overlay">
+                            <h3>Design Géométrique</h3>
+                            <p>Formes abstraites et lignes pures</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1084300/pexels-photo-1084300.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1084300/pexels-photo-1084300.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Design artistique">
+                        <div class="gallery-overlay">
+                            <h3>Design Artistique</h3>
+                            <p>Création unique et personnalisée</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-src="https://images.pexels.com/photos/1084298/pexels-photo-1084298.jpeg?auto=compress&cs=tinysrgb&w=1200">
+                        <img src="https://images.pexels.com/photos/1084298/pexels-photo-1084298.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Design minimaliste">
+                        <div class="gallery-overlay">
+                            <h3>Design Minimaliste</h3>
+                            <p>Simplicité et élégance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">Discutons de votre projet ensemble</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>votre.email@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <h3>Téléphone</h3>
+                                <p>+33 1 23 45 67 89</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Localisation</h3>
+                                <p>Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form class="contact-form" id="contactForm">
-                        <h3>Demande de Devis</h3>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Nom complet *</label>
-                                <input type="text" id="name" name="name" required placeholder="Votre nom">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required placeholder="votre@email.com">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">Téléphone</label>
-                                <input type="tel" id="phone" name="phone" placeholder="01 23 45 67 89">
-                            </div>
-                            <div class="form-group">
-                                <label for="service">Type de service *</label>
-                                <select id="service" name="service" required>
-                                    <option value="">Sélectionnez un service</option>
-                                    <option value="python">Développement Python</option>
-                                    <option value="web">Développement Web</option>
-                                    <option value="revit">Modélisation Revit/CAO</option>
-                                    <option value="tatouage">Design de Tatouage</option>
-                                    <option value="autre">Autre service</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="budget">Budget approximatif</label>
-                                <select id="budget" name="budget">
-                                    <option value="">Sélectionnez une fourchette</option>
-                                    <option value="500-1000">500€ - 1000€</option>
-                                    <option value="1000-3000">1000€ - 3000€</option>
-                                    <option value="3000-5000">3000€ - 5000€</option>
-                                    <option value="5000+">Plus de 5000€</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="timeline">Délai souhaité</label>
-                                <select id="timeline" name="timeline">
-                                    <option value="">Sélectionnez un délai</option>
-                                    <option value="urgent">Urgent (moins d'1 mois)</option>
-                                    <option value="1-2mois">1-2 mois</option>
-                                    <option value="2-3mois">2-3 mois</option>
-                                    <option value="flexible">Flexible</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Description du projet *</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet en détail, vos objectifs, contraintes particulières..." required></textarea>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Envoyer ma demande</span>
-                            <div class="btn-glow"></div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Envoyer le message</span>
+                            <span class="btn-icon">✈️</span>
                         </button>
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-logo">
-                        <span class="logo-text">Portfolio</span>
-                        <span class="logo-accent">Pro</span>
-                    </div>
-                    <p>&copy; 2024 Portfolio Pro. Tous droits réservés.</p>
-                </div>
-                <div class="footer-right">
-                    <div class="footer-links">
-                        <a href="#">Mentions légales</a>
-                        <a href="#">Politique de confidentialité</a>
-                        <a href="#" onclick="showSection('contact')">Contact</a>
-                    </div>
-                </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-description"></p>
             </div>
+            <button class="lightbox-nav lightbox-prev">❮</button>
+            <button class="lightbox-nav lightbox-next">❯</button>
         </div>
-    </footer>
+    </div>
 
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
