@@ -1,14 +1,46 @@
 {
-  "name": "vite-starter",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "portfolio-professionnel",
+  "version": "1.0.0",
+  "description": "Site portfolio professionnel présentant mes compétences en développement, Revit/CAO et design de tatouage",
+  "main": "index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000",
+    "build": "echo 'Site statique - aucune build nécessaire'",
+    "validate": "npx html-validate index.html",
+    "lint:css": "npx stylelint style.css",
+    "lint:js": "npx eslint app.js"
   },
+  "keywords": [
+    "portfolio",
+    "développement",
+    "web",
+    "revit",
+    "cao",
+    "tatouage",
+    "design",
+    "freelance"
+  ],
+  "author": "Portfolio Pro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/portfolio-professionnel.git"
+  },
+  "homepage": "https://portfolio-pro.fr",
   "devDependencies": {
-    "vite": "^5.4.2"
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1",
+    "html-validate": "^8.7.4",
+    "stylelint": "^16.0.2",
+    "eslint": "^8.56.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
