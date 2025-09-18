@@ -3,44 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de développeur - Automatisations, Scripts Python, Design">
-    <title>Portfolio - Développeur</title>
+    <meta name="description" content="Services professionnels de développement web, automatisation et design - Solutions sur mesure pour entreprises">
+    <meta name="keywords" content="développement web, automatisation, design, freelance, services digitaux">
+    <meta name="author" content="Développeur Professionnel">
+    <title>Services Digitaux Professionnels | Développement & Automatisation</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header avec navigation principale -->
+    <!-- Header professionnel avec navigation avancée -->
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
-                <!-- Logo/Nom -->
+                <!-- Logo professionnel -->
                 <div class="nav-logo">
-                    <h2>Portfolio</h2>
+                    <div class="logo-icon">⚡</div>
+                    <div class="logo-text">
+                        <h2>DevPro</h2>
+                        <span>Solutions Digitales</span>
+                    </div>
                 </div>
 
-                <!-- Navigation desktop -->
+                <!-- Navigation principale -->
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" data-section="home">Accueil</a>
+                        <a href="#" class="nav-link active" data-section="home">
+                            <span class="nav-icon">🏠</span>
+                            Accueil
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-section="projects">Projets</a>
+                        <a href="#" class="nav-link" data-section="services">
+                            <span class="nav-icon">⚙️</span>
+                            Services & Tarifs
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-section="services">Services</a>
+                        <a href="#" class="nav-link" data-section="portfolio">
+                            <span class="nav-icon">💼</span>
+                            Portfolio
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-section="blog">Blog</a>
+                        <a href="#" class="nav-link" data-section="process">
+                            <span class="nav-icon">🔄</span>
+                            Processus
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-section="contact">Contact</a>
+                        <a href="#" class="nav-link" data-section="testimonials">
+                            <span class="nav-icon">⭐</span>
+                            Témoignages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="contact">
+                            <span class="nav-icon">📞</span>
+                            Contact
+                        </a>
                     </li>
                 </ul>
 
-                <!-- Bouton thème et menu burger -->
-                <div class="nav-controls">
+                <!-- Actions header -->
+                <div class="nav-actions">
                     <button class="theme-toggle" aria-label="Basculer le thème">
                         <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="btn btn-primary btn-cta" data-section="contact">
+                        Devis Gratuit
                     </button>
                     <div class="hamburger">
                         <span></span>
@@ -54,101 +87,514 @@
 
     <!-- Contenu principal -->
     <main class="main">
-        <!-- Section Accueil -->
+        <!-- Section Accueil Hero -->
         <section id="home" class="section active">
-            <div class="container">
-                <div class="hero">
+            <div class="hero-section">
+                <div class="container">
                     <div class="hero-content">
-                        <h1 class="hero-title">
-                            Développeur & <span class="text-primary">Automatiseur</span>
-                        </h1>
-                        <p class="hero-description">
-                            Je transforme vos idées en solutions digitales efficaces. 
-                            Spécialisé dans l'automatisation, le développement Python et le design moderne.
-                        </p>
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" data-section="projects">Voir mes projets</button>
-                            <button class="btn btn-secondary" data-section="contact">Me contacter</button>
+                        <div class="hero-text">
+                            <div class="hero-badge">
+                                <span class="badge-icon">🚀</span>
+                                <span>Solutions Digitales Premium</span>
+                            </div>
+                            <h1 class="hero-title">
+                                Transformez vos idées en 
+                                <span class="text-gradient">solutions digitales</span>
+                                performantes
+                            </h1>
+                            <p class="hero-description">
+                                Expert en développement web, automatisation et design, je crée des solutions 
+                                sur mesure qui optimisent vos processus métier et boostent votre productivité. 
+                                De l'idée à la mise en production, bénéficiez d'un accompagnement complet.
+                            </p>
+                            <div class="hero-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">50+</div>
+                                    <div class="stat-label">Projets réalisés</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">98%</div>
+                                    <div class="stat-label">Satisfaction client</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">24h</div>
+                                    <div class="stat-label">Délai de réponse</div>
+                                </div>
+                            </div>
+                            <div class="hero-actions">
+                                <button class="btn btn-primary btn-large" data-section="services">
+                                    <span>Découvrir mes services</span>
+                                    <span class="btn-arrow">→</span>
+                                </button>
+                                <button class="btn btn-secondary btn-large" data-section="portfolio">
+                                    <span>Voir le portfolio</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="hero-image">
-                        <div class="hero-placeholder">
-                            <span>👨‍💻</span>
+                        <div class="hero-visual">
+                            <div class="hero-card floating">
+                                <div class="card-header">
+                                    <div class="card-dots">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="card-title">Code Premium</div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="code-line">
+                                        <span class="code-keyword">function</span>
+                                        <span class="code-function">optimizeYourBusiness</span>() {
+                                    </div>
+                                    <div class="code-line indent">
+                                        <span class="code-keyword">return</span>
+                                        <span class="code-string">"success"</span>;
+                                    </div>
+                                    <div class="code-line">}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section Projets -->
-        <section id="projects" class="section">
+        <!-- Section Services & Tarifs -->
+        <section id="services" class="section">
             <div class="container">
-                <h2 class="section-title">Mes Projets</h2>
-                <p class="section-description">Découvrez quelques-unes de mes réalisations récentes</p>
-                
-                <div class="projects-grid">
-                    <!-- Projet 1 -->
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder">📊</div>
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span class="badge-icon">⚙️</span>
+                        <span>Services Professionnels</span>
+                    </div>
+                    <h2 class="section-title">Solutions & Tarifs Transparents</h2>
+                    <p class="section-description">
+                        Des services adaptés à vos besoins avec une tarification claire et transparente. 
+                        Chaque projet est unique, ces tarifs sont indicatifs et peuvent être ajustés selon vos spécifications.
+                    </p>
+                </div>
+
+                <!-- Filtres de services -->
+                <div class="service-filters">
+                    <button class="filter-btn active" data-filter="all">Tous les services</button>
+                    <button class="filter-btn" data-filter="web">Développement Web</button>
+                    <button class="filter-btn" data-filter="automation">Automatisation</button>
+                    <button class="filter-btn" data-filter="design">Design & UI/UX</button>
+                    <button class="filter-btn" data-filter="consulting">Consulting</button>
+                </div>
+
+                <!-- Grille des services -->
+                <div class="services-grid">
+                    <!-- Service Web Development -->
+                    <div class="service-card premium" data-category="web">
+                        <div class="service-header">
+                            <div class="service-icon">🌐</div>
+                            <div class="service-badge">Populaire</div>
                         </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Automatisation Google Sheets</h3>
-                            <p class="project-description">
-                                Script Python pour automatiser la génération de rapports et l'analyse de données.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Google Sheets API</span>
-                                <span class="tag">Automation</span>
+                        <h3 class="service-title">Site Web Professionnel</h3>
+                        <p class="service-description">
+                            Site vitrine ou e-commerce responsive, optimisé SEO avec CMS intégré
+                        </p>
+                        <div class="service-price">
+                            <span class="price-from">À partir de</span>
+                            <span class="price-amount">1 500€</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Design responsive premium</li>
+                            <li>Optimisation SEO avancée</li>
+                            <li>CMS personnalisé</li>
+                            <li>Hébergement 1 an inclus</li>
+                            <li>Formation utilisateur</li>
+                            <li>Support 3 mois</li>
+                        </ul>
+                        <div class="service-timeline">
+                            <span class="timeline-icon">⏱️</span>
+                            <span>Livraison : 2-4 semaines</span>
+                        </div>
+                        <button class="btn btn-primary btn-service" data-service="site-web">
+                            Demander un devis
+                        </button>
+                    </div>
+
+                    <!-- Service Application Web -->
+                    <div class="service-card" data-category="web">
+                        <div class="service-header">
+                            <div class="service-icon">⚡</div>
+                        </div>
+                        <h3 class="service-title">Application Web Sur Mesure</h3>
+                        <p class="service-description">
+                            Application métier personnalisée avec base de données et tableau de bord
+                        </p>
+                        <div class="service-price">
+                            <span class="price-from">À partir de</span>
+                            <span class="price-amount">3 500€</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Architecture moderne (React/Vue)</li>
+                            <li>Base de données sécurisée</li>
+                            <li>API REST personnalisée</li>
+                            <li>Dashboard administrateur</li>
+                            <li>Tests automatisés</li>
+                            <li>Déploiement cloud</li>
+                        </ul>
+                        <div class="service-timeline">
+                            <span class="timeline-icon">⏱️</span>
+                            <span>Livraison : 4-8 semaines</span>
+                        </div>
+                        <button class="btn btn-primary btn-service" data-service="app-web">
+                            Demander un devis
+                        </button>
+                    </div>
+
+                    <!-- Service Automatisation Google Sheets -->
+                    <div class="service-card" data-category="automation">
+                        <div class="service-header">
+                            <div class="service-icon">📊</div>
+                        </div>
+                        <h3 class="service-title">Automatisation Google Sheets</h3>
+                        <p class="service-description">
+                            Scripts personnalisés pour automatiser vos tâches répétitives et rapports
+                        </p>
+                        <div class="service-price">
+                            <span class="price-from">À partir de</span>
+                            <span class="price-amount">450€</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Scripts Google Apps Script</li>
+                            <li>Intégration API externes</li>
+                            <li>Rapports automatisés</li>
+                            <li>Notifications par email</li>
+                            <li>Dashboard personnalisé</li>
+                            <li>Formation incluse</li>
+                        </ul>
+                        <div class="service-timeline">
+                            <span class="timeline-icon">⏱️</span>
+                            <span>Livraison : 1-2 semaines</span>
+                        </div>
+                        <button class="btn btn-primary btn-service" data-service="google-sheets">
+                            Demander un devis
+                        </button>
+                    </div>
+
+                    <!-- Service Scripts Python -->
+                    <div class="service-card" data-category="automation">
+                        <div class="service-header">
+                            <div class="service-icon">🐍</div>
+                        </div>
+                        <h3 class="service-title">Scripts Python Personnalisés</h3>
+                        <p class="service-description">
+                            Automatisation de processus, web scraping, analyse de données
+                        </p>
+                        <div class="service-price">
+                            <span class="price-from">À partir de</span>
+                            <span class="price-amount">350€</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Scripts d'automatisation</li>
+                            <li>Web scraping avancé</li>
+                            <li>Analyse de données</li>
+                            <li>Interface graphique (GUI)</li>
+                            <li>Documentation complète</li>
+                            <li>Code source fourni</li>
+                        </ul>
+                        <div class="service-timeline">
+                            <span class="timeline-icon">⏱️</span>
+                            <span>Livraison : 1-3 semaines</span>
+                        </div>
+                        <button class="btn btn-primary btn-service" data-service="python-scripts">
+                            Demander un devis
+                        </button>
+                    </div>
+
+                    <!-- Service Design UI/UX -->
+                    <div class="service-card" data-category="design">
+                        <div class="service-header">
+                            <div class="service-icon">🎨</div>
+                        </div>
+                        <h3 class="service-title">Design UI/UX Professionnel</h3>
+                        <p class="service-description">
+                            Conception d'interfaces utilisateur modernes et expérience optimisée
+                        </p>
+                        <div class="service-price">
+                            <span class="price-from">À partir de</span>
+                            <span class="price-amount">800€</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Recherche utilisateur (UX)</li>
+                            <li>Wireframes et prototypes</li>
+                            <li>Design system complet</li>
+                            <li>Maquettes haute fidélité</li>
+                            <li>Tests utilisateurs</li>
+                            <li>Guide de style</li>
+                        </ul>
+                        <div class="service-timeline">
+                            <span class="timeline-icon">⏱️</span>
+                            <span>Livraison : 2-4 semaines</span>
+                        </div>
+                        <button class="btn btn-primary btn-service" data-service="ui-ux-design">
+                            Demander un devis
+                        </button>
+                    </div>
+
+                    <!-- Service Consulting -->
+                    <div class="service-card" data-category="consulting">
+                        <div class="service-header">
+                            <div class="service-icon">💡</div>
+                        </div>
+                        <h3 class="service-title">Consulting Technique</h3>
+                        <p class="service-description">
+                            Audit, conseil stratégique et accompagnement dans vos projets digitaux
+                        </p>
+                        <div class="service-price">
+                            <span class="price-from">Tarif horaire</span>
+                            <span class="price-amount">85€/h</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Audit technique complet</li>
+                            <li>Stratégie digitale</li>
+                            <li>Architecture système</li>
+                            <li>Optimisation performances</li>
+                            <li>Formation équipes</li>
+                            <li>Accompagnement projet</li>
+                        </ul>
+                        <div class="service-timeline">
+                            <span class="timeline-icon">⏱️</span>
+                            <span>Flexible selon besoins</span>
+                        </div>
+                        <button class="btn btn-primary btn-service" data-service="consulting">
+                            Réserver une session
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section garanties -->
+                <div class="guarantees-section">
+                    <h3 class="guarantees-title">Mes Garanties</h3>
+                    <div class="guarantees-grid">
+                        <div class="guarantee-item">
+                            <div class="guarantee-icon">✅</div>
+                            <div class="guarantee-content">
+                                <h4>Satisfaction Garantie</h4>
+                                <p>Révisions illimitées jusqu'à satisfaction complète</p>
                             </div>
-                            <div class="project-actions">
-                                <a href="#" class="btn-link">Voir le code</a>
-                                <a href="#" class="btn-link">Demo</a>
+                        </div>
+                        <div class="guarantee-item">
+                            <div class="guarantee-icon">🔒</div>
+                            <div class="guarantee-content">
+                                <h4>Confidentialité Totale</h4>
+                                <p>NDA signé et protection de vos données sensibles</p>
+                            </div>
+                        </div>
+                        <div class="guarantee-item">
+                            <div class="guarantee-icon">⚡</div>
+                            <div class="guarantee-content">
+                                <h4>Livraison Rapide</h4>
+                                <p>Respect des délais convenus avec suivi en temps réel</p>
+                            </div>
+                        </div>
+                        <div class="guarantee-item">
+                            <div class="guarantee-icon">🛠️</div>
+                            <div class="guarantee-content">
+                                <h4>Support Inclus</h4>
+                                <p>Support technique gratuit pendant 3 mois minimum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Portfolio -->
+        <section id="portfolio" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span class="badge-icon">💼</span>
+                        <span>Réalisations</span>
+                    </div>
+                    <h2 class="section-title">Portfolio de Projets</h2>
+                    <p class="section-description">
+                        Découvrez une sélection de mes réalisations récentes, 
+                        chaque projet reflétant mon expertise et mon attention aux détails.
+                    </p>
+                </div>
+
+                <!-- Filtres portfolio -->
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="web-app">Applications Web</button>
+                    <button class="filter-btn" data-filter="automation">Automatisation</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                </div>
+
+                <!-- Grille portfolio -->
+                <div class="portfolio-grid">
+                    <!-- Projet 1 -->
+                    <div class="portfolio-item" data-category="web-app">
+                        <div class="portfolio-image">
+                            <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dashboard Analytics" loading="lazy">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-actions">
+                                    <button class="btn-icon" data-action="view" data-project="dashboard">
+                                        <span>👁️</span>
+                                    </button>
+                                    <button class="btn-icon" data-action="details" data-project="dashboard">
+                                        <span>ℹ️</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-category">Application Web</span>
+                                <span class="portfolio-year">2024</span>
+                            </div>
+                            <h3 class="portfolio-title">Dashboard Analytics E-commerce</h3>
+                            <p class="portfolio-description">
+                                Tableau de bord complet pour analyser les performances d'une boutique en ligne avec KPIs en temps réel.
+                            </p>
+                            <div class="portfolio-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Chart.js</span>
+                            </div>
+                            <div class="portfolio-results">
+                                <div class="result-item">
+                                    <span class="result-value">+45%</span>
+                                    <span class="result-label">Productivité</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-value">-60%</span>
+                                    <span class="result-label">Temps d'analyse</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Projet 2 -->
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder">🤖</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Bot de Trading</h3>
-                            <p class="project-description">
-                                Application Python pour l'automatisation de stratégies de trading avec interface web.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Flask</span>
-                                <span class="tag">API</span>
+                    <div class="portfolio-item" data-category="automation">
+                        <div class="portfolio-image">
+                            <img src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Automatisation Google Sheets" loading="lazy">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-actions">
+                                    <button class="btn-icon" data-action="view" data-project="automation">
+                                        <span>👁️</span>
+                                    </button>
+                                    <button class="btn-icon" data-action="details" data-project="automation">
+                                        <span>ℹ️</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="project-actions">
-                                <a href="#" class="btn-link">Voir le code</a>
-                                <a href="#" class="btn-link">Demo</a>
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-category">Automatisation</span>
+                                <span class="portfolio-year">2024</span>
+                            </div>
+                            <h3 class="portfolio-title">Système de Facturation Automatisé</h3>
+                            <p class="portfolio-description">
+                                Automatisation complète du processus de facturation avec génération PDF et envoi automatique.
+                            </p>
+                            <div class="portfolio-tech">
+                                <span class="tech-tag">Google Apps Script</span>
+                                <span class="tech-tag">Google Sheets</span>
+                                <span class="tech-tag">Gmail API</span>
+                                <span class="tech-tag">PDF Generation</span>
+                            </div>
+                            <div class="portfolio-results">
+                                <div class="result-item">
+                                    <span class="result-value">8h</span>
+                                    <span class="result-label">Économisées/semaine</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-value">100%</span>
+                                    <span class="result-label">Automatisé</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Projet 3 -->
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder">🎨</div>
+                    <div class="portfolio-item" data-category="design">
+                        <div class="portfolio-image">
+                            <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Design UI/UX" loading="lazy">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-actions">
+                                    <button class="btn-icon" data-action="view" data-project="design">
+                                        <span>👁️</span>
+                                    </button>
+                                    <button class="btn-icon" data-action="details" data-project="design">
+                                        <span>ℹ️</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Site Web Responsive</h3>
-                            <p class="project-description">
-                                Site vitrine moderne avec design responsive et optimisations SEO.
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-category">Design UI/UX</span>
+                                <span class="portfolio-year">2024</span>
+                            </div>
+                            <h3 class="portfolio-title">Refonte UX Application Mobile</h3>
+                            <p class="portfolio-description">
+                                Redesign complet d'une application mobile avec focus sur l'expérience utilisateur et l'accessibilité.
                             </p>
-                            <div class="project-tags">
-                                <span class="tag">HTML/CSS</span>
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">Responsive</span>
+                            <div class="portfolio-tech">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">User Research</span>
+                                <span class="tech-tag">Prototyping</span>
+                                <span class="tech-tag">Design System</span>
                             </div>
-                            <div class="project-actions">
-                                <a href="#" class="btn-link">Voir le code</a>
-                                <a href="#" class="btn-link">Demo</a>
+                            <div class="portfolio-results">
+                                <div class="result-item">
+                                    <span class="result-value">+85%</span>
+                                    <span class="result-label">Satisfaction</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-value">-40%</span>
+                                    <span class="result-label">Taux d'abandon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 4 -->
+                    <div class="portfolio-item" data-category="web-app">
+                        <div class="portfolio-image">
+                            <img src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Plateforme SaaS" loading="lazy">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-actions">
+                                    <button class="btn-icon" data-action="view" data-project="saas">
+                                        <span>👁️</span>
+                                    </button>
+                                    <button class="btn-icon" data-action="details" data-project="saas">
+                                        <span>ℹ️</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-meta">
+                                <span class="portfolio-category">SaaS Platform</span>
+                                <span class="portfolio-year">2024</span>
+                            </div>
+                            <h3 class="portfolio-title">Plateforme de Gestion de Projets</h3>
+                            <p class="portfolio-description">
+                                Solution SaaS complète pour la gestion de projets avec collaboration en temps réel et reporting avancé.
+                            </p>
+                            <div class="portfolio-tech">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">WebSocket</span>
+                            </div>
+                            <div class="portfolio-results">
+                                <div class="result-item">
+                                    <span class="result-value">500+</span>
+                                    <span class="result-label">Utilisateurs actifs</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-value">99.9%</span>
+                                    <span class="result-label">Uptime</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,157 +602,668 @@
             </div>
         </section>
 
-        <!-- Section Services -->
-        <section id="services" class="section">
+        <!-- Section Processus -->
+        <section id="process" class="section">
             <div class="container">
-                <h2 class="section-title">Mes Services</h2>
-                <p class="section-description">Solutions personnalisées pour vos besoins digitaux</p>
-                
-                <div class="services-grid">
-                    <!-- Service 1 -->
-                    <div class="service-card">
-                        <div class="service-icon">📈</div>
-                        <h3 class="service-title">Automatisations Google Sheets</h3>
-                        <p class="service-description">
-                            Création de scripts personnalisés pour automatiser vos tâches répétitives, 
-                            génération de rapports et synchronisation de données.
-                        </p>
-                        <ul class="service-features">
-                            <li>Scripts Google Apps Script</li>
-                            <li>Intégration API</li>
-                            <li>Rapports automatisés</li>
-                            <li>Dashboard personnalisés</li>
-                        </ul>
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span class="badge-icon">🔄</span>
+                        <span>Méthodologie</span>
                     </div>
-
-                    <!-- Service 2 -->
-                    <div class="service-card">
-                        <div class="service-icon">🐍</div>
-                        <h3 class="service-title">Scripts Python</h3>
-                        <p class="service-description">
-                            Développement d'applications Python pour automatiser vos processus métier, 
-                            analyse de données et création d'outils sur mesure.
-                        </p>
-                        <ul class="service-features">
-                            <li>Scripts d'automatisation</li>
-                            <li>Web scraping</li>
-                            <li>Analyse de données</li>
-                            <li>Applications desktop</li>
-                        </ul>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="service-card">
-                        <div class="service-icon">🎨</div>
-                        <h3 class="service-title">Design & Développement Web</h3>
-                        <p class="service-description">
-                            Création de sites web modernes, interfaces utilisateur intuitives et 
-                            optimisation de l'expérience utilisateur.
-                        </p>
-                        <ul class="service-features">
-                            <li>Sites web responsive</li>
-                            <li>UI/UX Design</li>
-                            <li>Optimisation SEO</li>
-                            <li>Maintenance et support</li>
-                        </ul>
-                    </div>
+                    <h2 class="section-title">Mon Processus de Travail</h2>
+                    <p class="section-description">
+                        Une approche structurée et transparente pour garantir le succès de votre projet, 
+                        de la conception à la livraison.
+                    </p>
                 </div>
-            </div>
-        </section>
 
-        <!-- Section Blog -->
-        <section id="blog" class="section">
-            <div class="container">
-                <h2 class="section-title">Blog</h2>
-                <p class="section-description">Articles et tutoriels sur le développement et l'automatisation</p>
-                
-                <div class="blog-placeholder">
-                    <div class="placeholder-content">
-                        <span class="placeholder-icon">📝</span>
-                        <h3>Bientôt disponible</h3>
-                        <p>Cette section contiendra des articles sur le développement, l'automatisation et mes retours d'expérience.</p>
-                        <div class="coming-soon">
-                            <span>Articles à venir :</span>
-                            <ul>
-                                <li>• Automatiser Google Sheets avec Python</li>
-                                <li>• Guide complet des API REST</li>
-                                <li>• Optimisation de performances web</li>
+                <div class="process-timeline">
+                    <!-- Étape 1 -->
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <div class="step-icon">🎯</div>
+                            <h3 class="step-title">Analyse & Stratégie</h3>
+                            <p class="step-description">
+                                Compréhension approfondie de vos besoins, analyse de l'existant et définition 
+                                de la stratégie optimale pour atteindre vos objectifs.
+                            </p>
+                            <ul class="step-deliverables">
+                                <li>Audit technique complet</li>
+                                <li>Cahier des charges détaillé</li>
+                                <li>Planning et budget précis</li>
+                                <li>Recommandations stratégiques</li>
                             </ul>
+                            <div class="step-duration">
+                                <span class="duration-icon">⏱️</span>
+                                <span>3-5 jours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 -->
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <div class="step-icon">🎨</div>
+                            <h3 class="step-title">Conception & Design</h3>
+                            <p class="step-description">
+                                Création des maquettes, prototypes et architecture technique. 
+                                Validation de l'expérience utilisateur avant développement.
+                            </p>
+                            <ul class="step-deliverables">
+                                <li>Wireframes et maquettes</li>
+                                <li>Prototypes interactifs</li>
+                                <li>Architecture technique</li>
+                                <li>Design system complet</li>
+                            </ul>
+                            <div class="step-duration">
+                                <span class="duration-icon">⏱️</span>
+                                <span>1-2 semaines</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 -->
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <div class="step-icon">⚡</div>
+                            <h3 class="step-title">Développement</h3>
+                            <p class="step-description">
+                                Développement itératif avec points de contrôle réguliers. 
+                                Code propre, testé et documenté selon les meilleures pratiques.
+                            </p>
+                            <ul class="step-deliverables">
+                                <li>Développement par sprints</li>
+                                <li>Tests automatisés</li>
+                                <li>Code review systématique</li>
+                                <li>Démos régulières</li>
+                            </ul>
+                            <div class="step-duration">
+                                <span class="duration-icon">⏱️</span>
+                                <span>2-6 semaines</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 4 -->
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <div class="step-icon">🚀</div>
+                            <h3 class="step-title">Tests & Déploiement</h3>
+                            <p class="step-description">
+                                Tests complets, optimisations performances et mise en production sécurisée. 
+                                Formation et documentation pour votre équipe.
+                            </p>
+                            <ul class="step-deliverables">
+                                <li>Tests utilisateurs</li>
+                                <li>Optimisations performances</li>
+                                <li>Déploiement sécurisé</li>
+                                <li>Formation et documentation</li>
+                            </ul>
+                            <div class="step-duration">
+                                <span class="duration-icon">⏱️</span>
+                                <span>3-7 jours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 5 -->
+                    <div class="process-step">
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <div class="step-icon">🛠️</div>
+                            <h3 class="step-title">Support & Évolution</h3>
+                            <p class="step-description">
+                                Accompagnement post-livraison avec support technique, maintenance 
+                                et évolutions selon vos besoins futurs.
+                            </p>
+                            <ul class="step-deliverables">
+                                <li>Support technique 24/7</li>
+                                <li>Maintenance préventive</li>
+                                <li>Évolutions fonctionnelles</li>
+                                <li>Monitoring et alertes</li>
+                            </ul>
+                            <div class="step-duration">
+                                <span class="duration-icon">⏱️</span>
+                                <span>Continu</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section Contact -->
+        <!-- Section Témoignages -->
+        <section id="testimonials" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span class="badge-icon">⭐</span>
+                        <span>Témoignages</span>
+                    </div>
+                    <h2 class="section-title">Ce que disent mes clients</h2>
+                    <p class="section-description">
+                        La satisfaction client est ma priorité. Découvrez les retours de ceux 
+                        qui ont fait confiance à mon expertise.
+                    </p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <!-- Témoignage 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "Travail exceptionnel ! L'automatisation de nos processus nous fait gagner 
+                            plus de 15 heures par semaine. Le ROI a été immédiat."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Marie Dubois" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Marie Dubois</div>
+                                <div class="author-title">Directrice Générale, TechCorp</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-project">
+                            <span class="project-tag">Automatisation Google Sheets</span>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "Interface magnifique et intuitive. Nos utilisateurs adorent la nouvelle 
+                            expérience. Professionnel, réactif et créatif."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Thomas Martin" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Thomas Martin</div>
+                                <div class="author-title">Product Manager, StartupXYZ</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-project">
+                            <span class="project-tag">Design UI/UX</span>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "Développement rapide et de qualité. L'application fonctionne parfaitement 
+                            et le support post-livraison est excellent."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Sophie Laurent" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Sophie Laurent</div>
+                                <div class="author-title">CEO, InnovSolutions</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-project">
+                            <span class="project-tag">Application Web</span>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "Expertise technique impressionnante. Les scripts Python ont révolutionné 
+                            notre workflow. Je recommande vivement !"
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Pierre Durand" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Pierre Durand</div>
+                                <div class="author-title">Responsable IT, DataFlow</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-project">
+                            <span class="project-tag">Scripts Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats de satisfaction -->
+                <div class="satisfaction-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">😊</div>
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Clients satisfaits</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔄</div>
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Clients récurrents</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Délai de réponse</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Projets livrés</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact Avancée -->
         <section id="contact" class="section">
             <div class="container">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-description">Discutons de votre projet ensemble</p>
-                
-                <div class="contact-content">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span class="badge-icon">📞</span>
+                        <span>Contact</span>
+                    </div>
+                    <h2 class="section-title">Démarrons votre projet ensemble</h2>
+                    <p class="section-description">
+                        Prêt à transformer vos idées en réalité ? Contactez-moi pour un devis gratuit 
+                        et personnalisé. Réponse garantie sous 24h.
+                    </p>
+                </div>
+
+                <div class="contact-layout">
+                    <!-- Informations de contact -->
                     <div class="contact-info">
-                        <h3>Parlons de votre projet</h3>
-                        <p>
-                            Je suis toujours intéressé par de nouveaux défis et collaborations. 
-                            N'hésitez pas à me contacter pour discuter de vos besoins.
-                        </p>
-                        <div class="contact-methods">
-                            <div class="contact-method">
-                                <span class="contact-icon">📧</span>
-                                <span>email@example.com</span>
+                        <div class="contact-card">
+                            <h3>Parlons de votre projet</h3>
+                            <p>
+                                Chaque projet est unique. Décrivez-moi vos besoins et objectifs, 
+                                je vous proposerai la solution la plus adaptée.
+                            </p>
+                            
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <div class="method-icon">📧</div>
+                                    <div class="method-content">
+                                        <div class="method-label">Email professionnel</div>
+                                        <div class="method-value">contact@devpro-solutions.fr</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-method">
+                                    <div class="method-icon">📱</div>
+                                    <div class="method-content">
+                                        <div class="method-label">Téléphone</div>
+                                        <div class="method-value">+33 6 XX XX XX XX</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-method">
+                                    <div class="method-icon">💼</div>
+                                    <div class="method-content">
+                                        <div class="method-label">LinkedIn</div>
+                                        <div class="method-value">linkedin.com/in/devpro</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-method">
+                                    <div class="method-icon">📍</div>
+                                    <div class="method-content">
+                                        <div class="method-label">Localisation</div>
+                                        <div class="method-value">France (Remote possible)</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="contact-method">
-                                <span class="contact-icon">📱</span>
-                                <span>+33 X XX XX XX XX</span>
+
+                            <div class="availability-status">
+                                <div class="status-indicator available"></div>
+                                <span>Disponible pour nouveaux projets</span>
                             </div>
-                            <div class="contact-method">
-                                <span class="contact-icon">📍</span>
-                                <span>France</span>
+
+                            <div class="response-time">
+                                <div class="response-icon">⚡</div>
+                                <div class="response-text">
+                                    <strong>Réponse garantie sous 24h</strong>
+                                    <span>Même le weekend pour les urgences</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nom complet</label>
-                            <input type="text" id="name" name="name" required>
+
+                    <!-- Formulaire de contact avancé -->
+                    <div class="contact-form-section">
+                        <form class="contact-form advanced-form" id="contactForm">
+                            <!-- Étape 1: Type de projet -->
+                            <div class="form-step active" data-step="1">
+                                <h4 class="form-step-title">Quel type de projet vous intéresse ?</h4>
+                                <div class="project-types">
+                                    <label class="project-type-card">
+                                        <input type="radio" name="projectType" value="site-web">
+                                        <div class="card-content">
+                                            <div class="card-icon">🌐</div>
+                                            <div class="card-title">Site Web</div>
+                                            <div class="card-description">Vitrine, e-commerce, application</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="project-type-card">
+                                        <input type="radio" name="projectType" value="automatisation">
+                                        <div class="card-content">
+                                            <div class="card-icon">⚡</div>
+                                            <div class="card-title">Automatisation</div>
+                                            <div class="card-description">Scripts, processus, intégrations</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="project-type-card">
+                                        <input type="radio" name="projectType" value="design">
+                                        <div class="card-content">
+                                            <div class="card-icon">🎨</div>
+                                            <div class="card-title">Design UI/UX</div>
+                                            <div class="card-description">Interface, expérience utilisateur</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="project-type-card">
+                                        <input type="radio" name="projectType" value="consulting">
+                                        <div class="card-content">
+                                            <div class="card-icon">💡</div>
+                                            <div class="card-title">Consulting</div>
+                                            <div class="card-description">Audit, conseil, formation</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-next" disabled>
+                                    Continuer <span class="btn-arrow">→</span>
+                                </button>
+                            </div>
+
+                            <!-- Étape 2: Budget -->
+                            <div class="form-step" data-step="2">
+                                <h4 class="form-step-title">Quel est votre budget approximatif ?</h4>
+                                <div class="budget-ranges">
+                                    <label class="budget-card">
+                                        <input type="radio" name="budget" value="500-1500">
+                                        <div class="budget-content">
+                                            <div class="budget-range">500€ - 1 500€</div>
+                                            <div class="budget-description">Projet simple, automatisation basique</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="budget-card">
+                                        <input type="radio" name="budget" value="1500-5000">
+                                        <div class="budget-content">
+                                            <div class="budget-range">1 500€ - 5 000€</div>
+                                            <div class="budget-description">Site web complet, application métier</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="budget-card">
+                                        <input type="radio" name="budget" value="5000-15000">
+                                        <div class="budget-content">
+                                            <div class="budget-range">5 000€ - 15 000€</div>
+                                            <div class="budget-description">Plateforme complexe, SaaS</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="budget-card">
+                                        <input type="radio" name="budget" value="15000+">
+                                        <div class="budget-content">
+                                            <div class="budget-range">15 000€+</div>
+                                            <div class="budget-description">Projet d'envergure, solution enterprise</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-navigation">
+                                    <button type="button" class="btn btn-secondary btn-prev">
+                                        ← Retour
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-next" disabled>
+                                        Continuer <span class="btn-arrow">→</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Étape 3: Délai -->
+                            <div class="form-step" data-step="3">
+                                <h4 class="form-step-title">Dans quels délais souhaitez-vous le projet ?</h4>
+                                <div class="timeline-options">
+                                    <label class="timeline-card">
+                                        <input type="radio" name="timeline" value="urgent">
+                                        <div class="timeline-content">
+                                            <div class="timeline-icon">🚨</div>
+                                            <div class="timeline-title">Urgent</div>
+                                            <div class="timeline-description">Moins de 2 semaines</div>
+                                            <div class="timeline-note">+30% sur le tarif</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="timeline-card">
+                                        <input type="radio" name="timeline" value="normal">
+                                        <div class="timeline-content">
+                                            <div class="timeline-icon">⏰</div>
+                                            <div class="timeline-title">Normal</div>
+                                            <div class="timeline-description">2-6 semaines</div>
+                                            <div class="timeline-note">Délai standard</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="timeline-card">
+                                        <input type="radio" name="timeline" value="flexible">
+                                        <div class="timeline-content">
+                                            <div class="timeline-icon">📅</div>
+                                            <div class="timeline-title">Flexible</div>
+                                            <div class="timeline-description">Plus de 6 semaines</div>
+                                            <div class="timeline-note">-10% sur le tarif</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-navigation">
+                                    <button type="button" class="btn btn-secondary btn-prev">
+                                        ← Retour
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-next" disabled>
+                                        Continuer <span class="btn-arrow">→</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Étape 4: Informations personnelles -->
+                            <div class="form-step" data-step="4">
+                                <h4 class="form-step-title">Vos informations</h4>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="firstName">Prénom *</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="lastName">Nom *</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email professionnel *</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="phone">Téléphone</label>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                    
+                                    <div class="form-group full-width">
+                                        <label for="company">Entreprise</label>
+                                        <input type="text" id="company" name="company">
+                                    </div>
+                                    
+                                    <div class="form-group full-width">
+                                        <label for="message">Décrivez votre projet *</label>
+                                        <textarea id="message" name="message" rows="5" required 
+                                                placeholder="Décrivez vos besoins, objectifs, contraintes techniques..."></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-options">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="newsletter">
+                                        <span class="checkmark"></span>
+                                        <span>Recevoir des conseils et actualités (1 email/mois max)</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="urgentContact">
+                                        <span class="checkmark"></span>
+                                        <span>Projet urgent - Me contacter par téléphone</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-navigation">
+                                    <button type="button" class="btn btn-secondary btn-prev">
+                                        ← Retour
+                                    </button>
+                                    <div class="form-actions-final">
+                                        <button type="button" class="btn btn-outline" id="saveDraft">
+                                            💾 Sauvegarder
+                                        </button>
+                                        <button type="submit" class="btn btn-primary btn-large">
+                                            <span>Envoyer ma demande</span>
+                                            <span class="btn-arrow">→</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Indicateur de progression -->
+                            <div class="form-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                                <div class="progress-steps">
+                                    <span class="step-indicator active">1</span>
+                                    <span class="step-indicator">2</span>
+                                    <span class="step-indicator">3</span>
+                                    <span class="step-indicator">4</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Estimation automatique -->
+                        <div class="project-estimation" id="projectEstimation" style="display: none;">
+                            <h4>Estimation préliminaire</h4>
+                            <div class="estimation-content">
+                                <div class="estimation-item">
+                                    <span class="estimation-label">Budget estimé :</span>
+                                    <span class="estimation-value" id="estimatedBudget">-</span>
+                                </div>
+                                <div class="estimation-item">
+                                    <span class="estimation-label">Délai estimé :</span>
+                                    <span class="estimation-value" id="estimatedTimeline">-</span>
+                                </div>
+                            </div>
+                            <div class="estimation-note">
+                                <small>* Estimation basée sur vos réponses. Devis précis après analyse détaillée.</small>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-secondary" id="saveDraft">
-                                Sauvegarder le brouillon
-                            </button>
-                            <button type="submit" class="btn btn-primary">
-                                Envoyer le message
-                            </button>
-                        </div>
-                        
-                        <div class="form-note">
-                            <small>* Vos données sont protégées et ne seront utilisées que pour vous recontacter.</small>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer professionnel -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; <span id="currentYear"></span> Portfolio. Tous droits réservés.</p>
-                <a href="#" class="footer-link" data-section="contact">Me contacter</a>
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <div class="logo-icon">⚡</div>
+                            <div class="logo-text">
+                                <h3>DevPro Solutions</h3>
+                                <span>Excellence digitale</span>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            Transformez vos idées en solutions digitales performantes. 
+                            Expert en développement web, automatisation et design.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-section">
+                            <h4>Services</h4>
+                            <ul>
+                                <li><a href="#" data-section="services">Développement Web</a></li>
+                                <li><a href="#" data-section="services">Automatisation</a></li>
+                                <li><a href="#" data-section="services">Design UI/UX</a></li>
+                                <li><a href="#" data-section="services">Consulting</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-section">
+                            <h4>Ressources</h4>
+                            <ul>
+                                <li><a href="#" data-section="portfolio">Portfolio</a></li>
+                                <li><a href="#" data-section="process">Processus</a></li>
+                                <li><a href="#" data-section="testimonials">Témoignages</a></li>
+                                <li><a href="#" data-section="contact">Devis gratuit</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-section">
+                            <h4>Contact</h4>
+                            <ul>
+                                <li>📧 contact@devpro-solutions.fr</li>
+                                <li>📱 +33 6 XX XX XX XX</li>
+                                <li>💼 LinkedIn</li>
+                                <li>📍 France</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p>&copy; <span id="currentYear"></span> DevPro Solutions. Tous droits réservés.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#">Mentions légales</a>
+                        <a href="#">Politique de confidentialité</a>
+                        <a href="#">CGV</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
