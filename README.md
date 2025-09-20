@@ -1,223 +1,144 @@
-# 🎨 Portfolio Professionnel Multi-Spécialités
+# Portfolio Professionnel
 
-Site portfolio moderne et responsive présentant 4 domaines d'expertise créative :
-
-- 🏗️ **Maquettes 3D** (Revit/AutoCAD)
-- 🎨 **Affiches Événementielles** 
-- 💻 **Développement Web**
-- 🖋️ **Designs de Tatouage**
-
-## ✨ Fonctionnalités
-
-- ✅ Design premium avec animations fluides
-- ✅ Navigation par onglets intuitive
-- ✅ Galerie d'images avec modal de prévisualisation
-- ✅ Prévisualisateur de code HTML intégré
-- ✅ Interface responsive (mobile, tablette, desktop)
-- ✅ Optimisé pour GitHub Pages
-- ✅ SEO et performances optimisées
+Un portfolio moderne et responsive présentant vos projets de maquettes 3D, affiches événementielles, développement web et designs de tatouage.
 
 ## 🚀 Déploiement sur GitHub Pages
 
-### Configuration automatique
-1. **Créez un repository GitHub**
-2. **Uploadez tous les fichiers** de ce projet
-3. **Allez dans Settings > Pages**
-4. **Source** : Deploy from a branch
-5. **Branch** : main / (root)
-6. **Votre site sera accessible** sur : `https://votrenom.github.io/nom-repository`
+### 1. Configuration initiale
+1. Créez un nouveau repository sur GitHub nommé `votre-username.github.io`
+2. Clonez ou uploadez tous les fichiers dans ce repository
+3. Dans les settings du repository, activez GitHub Pages (source: branch main)
 
-### Structure des fichiers
+### 2. Structure des fichiers
 ```
-portfolio/
 ├── index.html          # Page principale
-├── css/
-│   └── styles.css      # Styles CSS modernes
-├── js/
-│   └── script.js       # Logique JavaScript
-├── images/             # Vos images (à créer)
-│   ├── 3d/
-│   ├── affiches/
-│   ├── code/
-│   └── tatouages/
-└── README.md           # Ce fichier
+├── style.css          # Styles CSS
+├── script.js          # JavaScript pour les interactions
+├── README.md          # Ce fichier
+└── images/            # Dossier pour vos images (à créer)
+    ├── modeling/      # Images des maquettes 3D
+    ├── posters/       # Images des affiches
+    ├── tattoos/       # Images des designs de tatouage
+    └── projects/      # Screenshots des projets web
 ```
 
-## 🎯 Ajouter vos projets
+## 📝 Personnalisation
 
-Éditez le fichier `js/script.js` et utilisez ces fonctions :
+### Modifier les informations personnelles
+Dans `index.html`, modifiez :
+- Le titre de la page (ligne 7)
+- Votre nom et description (lignes 25-27)
+- Vos liens de contact (lignes 33-44)
 
-### 1. Projets 3D (Revit/AutoCAD)
+### Ajouter vos projets
+
+#### 1. Maquettes 3D
+Remplacez le contenu du div `modeling-projects` (ligne 85) par vos projets :
+```html
+<div class="project-card">
+    <div class="project-image-placeholder">
+        <img src="images/modeling/mon-projet.jpg" alt="Mon Projet">
+    </div>
+    <div class="project-info">
+        <h3>Nom de votre projet</h3>
+        <p>Description de votre projet de maquette 3D.</p>
+        <div class="project-tags">
+            <span class="tag">Revit</span>
+            <span class="tag">AutoCAD</span>
+        </div>
+    </div>
+</div>
+```
+
+#### 2. Affiches événementielles
+Ajoutez vos affiches dans le div `poster-projects` (ligne 106).
+
+#### 3. Projets de développement
+Modifiez le div `code-projects` (ligne 127) avec vos projets web.
+
+#### 4. Designs de tatouage
+Ajoutez vos designs dans le div `tattoo-projects` (ligne 178).
+
+### Utiliser les fonctions JavaScript
+
+Le fichier `script.js` inclut des fonctions utiles pour ajouter facilement du contenu :
+
 ```javascript
-addProject3D({
-    title: "Villa Moderne",
-    description: "Modélisation complète avec Revit...",
-    imageUrl: "images/3d/villa-moderne.jpg",
-    tags: ["Revit", "BIM", "Architecture"],
-    featured: true // optionnel, pour mettre en avant
-});
+// Ajouter un projet de maquette 3D
+addModelingProject(
+    "Villa Moderne",
+    "Description du projet",
+    "images/modeling/villa.jpg",
+    ["Revit", "AutoCAD"],
+    "https://lien-vers-projet.com"
+);
+
+// Ajouter une affiche
+addPosterProject(
+    "Festival 2024",
+    "Description de l'affiche",
+    "images/posters/festival.jpg",
+    ["Photoshop", "Illustrator"]
+);
+
+// Ajouter un projet de code
+addCodeProject(
+    "Site E-commerce",
+    "Description du projet",
+    `<html>Votre code HTML ici</html>`,
+    ["HTML", "CSS", "JavaScript"],
+    "https://site-live.com",
+    "https://github.com/user/repo"
+);
 ```
 
-### 2. Affiches Événementielles
-```javascript
-addProjectAffiche({
-    title: "Festival de Jazz",
-    description: "Affiche événementielle...",
-    imageUrl: "images/affiches/jazz-festival.jpg",
-    tags: ["Print", "Événement", "Design"]
-});
-```
+## 🎨 Personnalisation du design
 
-### 3. Projets Web (Code HTML)
-```javascript
-addProjectCode({
-    title: "Site E-commerce",
-    description: "Boutique en ligne moderne...",
-    htmlCode: `<!DOCTYPE html>...votre code HTML complet...`,
-    tags: ["HTML", "CSS", "JavaScript"],
-    link: "https://mon-site-live.com" // optionnel
-});
-```
-
-### 4. Designs de Tatouage
-```javascript
-addProjectTatouage({
-    title: "Dragon Japonais",
-    description: "Design traditionnel japonais...",
-    imageUrl: "images/tatouages/dragon-japonais.jpg",
-    tags: ["Japonais", "Traditionnel", "Noir et Gris"],
-    style: "Traditionnel Japonais"
-});
-```
-
-## 🎨 Personnalisation
-
-### Couleurs principales (dans `css/styles.css`)
+### Couleurs
+Modifiez les variables CSS dans `style.css` (lignes 2-16) :
 ```css
 :root {
-    --primary: #2563eb;        /* Bleu principal */
-    --secondary: #1e293b;      /* Gris foncé */
-    --accent: #f59e0b;         /* Accent doré */
-    --color-3d: #3b82f6;       /* Couleur section 3D */
-    --color-affiches: #8b5cf6; /* Couleur section affiches */
-    --color-code: #10b981;     /* Couleur section code */
-    --color-tatouage: #ef4444; /* Couleur section tatouage */
+    --primary-color: #2563eb;    /* Couleur principale */
+    --secondary-color: #7c3aed;  /* Couleur secondaire */
+    --accent-color: #ea580c;     /* Couleur d'accent */
+    /* ... autres couleurs */
 }
 ```
 
-### Informations personnelles
-Dans `index.html`, modifiez :
-- Le titre du site
-- Les informations de contact dans la modal
-- Les liens des réseaux sociaux
-
 ### Polices
-Le site utilise "Inter" et "Playfair Display" de Google Fonts. Pour changer :
-```html
-<link href="https://fonts.googleapis.com/css2?family=VotrePolice:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-```
+Changez la police dans `index.html` (ligne 8) et `style.css` (ligne 21).
 
-## 📱 Fonctionnalités avancées
+## 📱 Responsive Design
 
-### Navigation fluide
-- Transitions animées entre sections
-- Menu mobile responsive
-- Indicateurs visuels d'état
+Le site est entièrement responsive et s'adapte automatiquement :
+- Mobile : < 640px
+- Tablette : 640px - 1024px  
+- Desktop : > 1024px
 
-### Galerie interactive
-- Modal de prévisualisation plein écran
-- Zoom et navigation au clavier
-- Chargement optimisé des images
+## 🔧 Fonctionnalités
 
-### Prévisualisateur de code
-- Rendu HTML en temps réel
-- Coloration syntaxique
-- Copie de code en un clic
-
-### Animations
-- Animations au scroll
-- Effets de survol sophistiqués
-- Transitions fluides
-
-## 🛠️ Étapes de personnalisation
-
-1. **Supprimez les exemples**
-   - Dans `js/script.js`, supprimez la fonction `addExampleProjects()`
-
-2. **Ajoutez vos projets**
-   - Utilisez les fonctions `add___()` pour ajouter vos créations
-
-3. **Organisez vos images**
-   - Créez le dossier `images/` avec les sous-dossiers
-   - Optimisez vos images (format WebP recommandé, < 500KB)
-
-4. **Personnalisez le design**
-   - Modifiez les couleurs dans `css/styles.css`
-   - Adaptez les textes et informations personnelles
-
-5. **Testez localement**
-   - Ouvrez `index.html` dans votre navigateur
-   - Vérifiez la responsivité sur différents écrans
-
-6. **Publiez sur GitHub**
-   - Créez votre repository
-   - Activez GitHub Pages
-   - Votre site sera en ligne !
-
-## 📸 Recommandations images
-
-### Formats et tailles
-- **Maquettes 3D** : 1200x900px, format JPG/WebP
-- **Affiches** : 800x1200px (portrait), JPG/WebP
-- **Captures d'écran code** : 1200x800px, PNG/WebP
-- **Tatouages** : 800x1000px, JPG/WebP
-
-### Optimisation
-- Poids maximum : 500KB par image
-- Utilisez des outils comme TinyPNG pour compresser
-- Format WebP recommandé pour de meilleures performances
-
-## 🚀 Performance et SEO
-
-### Optimisations incluses
-- Chargement lazy des images
-- CSS et JS minifiés
-- Meta tags SEO optimisés
-- Structure sémantique HTML5
-- Accessibilité WCAG
-
-### Métriques de performance
-- Lighthouse Score : 95+
-- First Contentful Paint : < 1.5s
-- Largest Contentful Paint : < 2.5s
-- Cumulative Layout Shift : < 0.1
-
-## 🎯 Conseils pour un portfolio réussi
-
-### Contenu
-- Sélectionnez vos meilleurs projets (qualité > quantité)
-- Rédigez des descriptions détaillées et engageantes
-- Utilisez des mots-clés pertinents pour le SEO
-
-### Visuels
-- Images haute qualité et bien cadrées
-- Cohérence dans le style photographique
-- Variété dans les types de projets présentés
-
-### Navigation
-- Organisation logique par spécialité
-- Facilité de contact et d'interaction
-- Appels à l'action clairs
+- ✅ Navigation par onglets fluide
+- ✅ Animations CSS modernes
+- ✅ Design responsive
+- ✅ Visualiseur de code intégré
+- ✅ Galeries d'images adaptatives
+- ✅ Effets de survol et transitions
+- ✅ Optimisé pour GitHub Pages
+- ✅ SEO-friendly
 
 ## 📞 Support
 
-Pour toute question ou personnalisation avancée :
-- Consultez la documentation dans les commentaires du code
-- Utilisez les issues GitHub pour signaler des problèmes
-- Partagez vos créations avec le hashtag #PortfolioCreatif
+Pour toute question ou personnalisation avancée, n'hésitez pas à :
+1. Créer une issue sur GitHub
+2. Consulter la documentation GitHub Pages
+3. Modifier le code selon vos besoins
 
----
+## 🚀 Mise en ligne
 
-**Créez un portfolio qui vous ressemble ! 🎨✨**
+Une fois vos fichiers pushés sur GitHub :
+1. Allez dans Settings > Pages
+2. Sélectionnez la source "Deploy from a branch"
+3. Choisissez "main" branch et "/ (root)"
+4. Votre site sera disponible à `https://votre-username.github.io`
 
-*Fait avec ❤️ pour les créateurs multi-talents*
+Bonne création de votre portfolio ! 🎉
