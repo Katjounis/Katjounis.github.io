@@ -3,314 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Professionnel - Créateur Multi-Talents</title>
-    <meta name="description" content="Portfolio créatif présentant mes réalisations en architecture 3D, design graphique, développement web et art du tatouage">
-    
-    <!-- Fonts -->
+    <title>Mon Portfolio Professionnel</title>
+    <meta name="description" content="Portfolio professionnel - Maquettes 3D, Affiches, Développement Web, Tatouages">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">
-                <i class="fas fa-palette"></i>
-            </div>
-            <div class="loader-text">Chargement du portfolio...</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="header-title">Mon Portfolio</h1>
+                    <p class="header-subtitle">Architecte • Designer • Développeur</p>
+                    <p class="header-description">Spécialisé en maquettes 3D, design graphique et développement web</p>
+                </div>
+                <div class="header-actions">
+                    <a href="mailto:votre.email@exemple.com" class="btn btn-primary">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Contact
+                    </a>
+                    <a href="https://github.com/votreusername" class="btn btn-secondary" target="_blank">
+                        <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <div class="brand-logo">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <div class="brand-text">
-                    <h1>Portfolio</h1>
-                    <span>Créateur Multi-Talents</span>
-                </div>
-            </div>
-
-            <button class="nav-toggle" id="navToggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <div class="nav-menu" id="navMenu">
-                <a href="#" class="nav-link active" data-tab="3d">
-                    <i class="fas fa-cube"></i>
-                    <span>Maquettes 3D</span>
-                    <div class="nav-indicator"></div>
-                </a>
-                <a href="#" class="nav-link" data-tab="affiches">
-                    <i class="fas fa-palette"></i>
-                    <span>Affiches</span>
-                    <div class="nav-indicator"></div>
-                </a>
-                <a href="#" class="nav-link" data-tab="code">
-                    <i class="fas fa-code"></i>
-                    <span>Développement</span>
-                    <div class="nav-indicator"></div>
-                </a>
-                <a href="#" class="nav-link" data-tab="tatouage">
-                    <i class="fas fa-brush"></i>
-                    <span>Tatouages</span>
-                    <div class="nav-indicator"></div>
-                </a>
-            </div>
-
-            <div class="nav-actions">
-                <button class="btn-contact" id="btnContact">
-                    <i class="fas fa-envelope"></i>
-                    Contact
-                </button>
-            </div>
-        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-background">
-            <div class="hero-particles"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="title-line">Créateur</span>
-                    <span class="title-line highlight">Multi-Talents</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Architecture 3D • Design Graphique • Développement Web • Art du Tatouage
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number" data-count="50">0</div>
-                        <div class="stat-label">Projets Réalisés</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" data-count="4">0</div>
-                        <div class="stat-label">Spécialités</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" data-count="100">0</div>
-                        <div class="stat-label">% Satisfaction</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card">
-                    <div class="card-glow"></div>
-                    <i class="fas fa-magic"></i>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-            <span>Découvrir mes créations</span>
-        </div>
-    </section>
-
     <!-- Main Content -->
-    <main class="main" id="main">
-        <!-- Section Maquettes 3D -->
-        <section id="3d" class="section active">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">
-                        <i class="fas fa-cube"></i>
-                        Architecture & Modélisation
-                    </div>
-                    <h2 class="section-title">Maquettes 3D</h2>
-                    <p class="section-subtitle">
-                        Créations architecturales réalisées avec Revit et AutoCAD. 
-                        De la conception à la modélisation 3D photoréaliste.
-                    </p>
-                </div>
-                
-                <div class="projects-container">
-                    <div class="projects-grid" id="projects3d">
-                        <!-- Les projets 3D seront ajoutés ici par JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main class="main">
+        <div class="container">
+            <!-- Tabs Navigation -->
+            <nav class="tabs-nav">
+                <button class="tab-button active" data-tab="modeling">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    Maquettes 3D
+                </button>
+                <button class="tab-button" data-tab="posters">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Affiches
+                </button>
+                <button class="tab-button" data-tab="code">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    Développement
+                </button>
+                <button class="tab-button" data-tab="tattoo">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2a2 2 0 002-2V5a2 2 0 00-2-2z"/>
+                    </svg>
+                    Tatouages
+                </button>
+            </nav>
 
-        <!-- Section Affiches -->
-        <section id="affiches" class="section">
-            <div class="container">
+            <!-- Tab Contents -->
+            <div class="tab-content active" id="modeling">
                 <div class="section-header">
-                    <div class="section-badge">
-                        <i class="fas fa-palette"></i>
-                        Design Graphique
-                    </div>
-                    <h2 class="section-title">Affiches Événementielles</h2>
-                    <p class="section-subtitle">
-                        Créations graphiques pour événements, communication et branding. 
-                        Du concept à la réalisation finale.
-                    </p>
+                    <h2>Maquettes 3D</h2>
+                    <p>Projets réalisés avec Revit, AutoCAD et autres outils de modélisation 3D</p>
                 </div>
-                
-                <div class="projects-container">
-                    <div class="projects-grid" id="projectsAffiches">
-                        <!-- Les affiches seront ajoutées ici par JavaScript -->
+                <div class="projects-grid" id="modeling-projects">
+                    <!-- Ajoutez vos projets de maquettes 3D ici -->
+                    <div class="project-card">
+                        <div class="project-image-placeholder">
+                            <svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>Nom du Projet 1</h3>
+                            <p>Description du projet de maquette 3D. Logiciels utilisés, durée, spécifications techniques.</p>
+                            <div class="project-tags">
+                                <span class="tag">Revit</span>
+                                <span class="tag">AutoCAD</span>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Dupliquez cette structure pour chaque projet -->
                 </div>
             </div>
-        </section>
 
-        <!-- Section Code -->
-        <section id="code" class="section">
-            <div class="container">
+            <div class="tab-content" id="posters">
                 <div class="section-header">
-                    <div class="section-badge">
-                        <i class="fas fa-code"></i>
-                        Développement Web
-                    </div>
-                    <h2 class="section-title">Projets Web</h2>
-                    <p class="section-subtitle">
-                        Applications web modernes et sites responsives. 
-                        Code propre, performances optimisées.
-                    </p>
+                    <h2>Affiches Événementielles</h2>
+                    <p>Créations graphiques pour événements, campagnes et communications</p>
                 </div>
-                
-                <div class="projects-container">
-                    <div class="code-projects" id="projectsCode">
-                        <!-- Les projets code seront ajoutés ici par JavaScript -->
+                <div class="projects-grid" id="poster-projects">
+                    <!-- Ajoutez vos projets d'affiches ici -->
+                    <div class="project-card">
+                        <div class="project-image-placeholder">
+                            <svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>Affiche Événement 1</h3>
+                            <p>Description de l'affiche, contexte de création, techniques utilisées.</p>
+                            <div class="project-tags">
+                                <span class="tag">Photoshop</span>
+                                <span class="tag">Illustrator</span>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Dupliquez cette structure pour chaque affiche -->
                 </div>
             </div>
-        </section>
 
-        <!-- Section Tatouage -->
-        <section id="tatouage" class="section">
-            <div class="container">
+            <div class="tab-content" id="code">
                 <div class="section-header">
-                    <div class="section-badge">
-                        <i class="fas fa-brush"></i>
-                        Art Corporel
-                    </div>
-                    <h2 class="section-title">Designs de Tatouage</h2>
-                    <p class="section-subtitle">
-                        Créations artistiques uniques pour l'art corporel. 
-                        Styles variés, du traditionnel au moderne.
-                    </p>
+                    <h2>Projets de Développement</h2>
+                    <p>Pages web, applications et projets de code</p>
                 </div>
-                
-                <div class="projects-container">
-                    <div class="projects-grid" id="projectsTatouage">
-                        <!-- Les designs de tatouage seront ajoutés ici par JavaScript -->
+                <div class="code-projects" id="code-projects">
+                    <!-- Ajoutez vos projets de code ici -->
+                    <div class="code-project-card">
+                        <div class="code-project-header">
+                            <h3>Nom du Projet Web 1</h3>
+                            <div class="code-project-links">
+                                <a href="#" class="btn btn-sm">Voir le Site</a>
+                                <a href="#" class="btn btn-sm btn-secondary">Code Source</a>
+                            </div>
+                        </div>
+                        <div class="code-preview">
+                            <div class="code-preview-header">
+                                <div class="code-preview-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <span class="code-preview-title">index.html</span>
+                            </div>
+                            <pre class="code-preview-content"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mon Projet&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Exemple de Code&lt;/h1&gt;
+    &lt;!-- Ajoutez votre code ici --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                        <div class="code-project-description">
+                            <p>Description du projet, technologies utilisées, fonctionnalités implémentées.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Dupliquez cette structure pour chaque projet de code -->
                 </div>
             </div>
-        </section>
+
+            <div class="tab-content" id="tattoo">
+                <div class="section-header">
+                    <h2>Designs de Tatouage</h2>
+                    <p>Créations artistiques et designs personnalisés pour tatouages</p>
+                </div>
+                <div class="projects-grid" id="tattoo-projects">
+                    <!-- Ajoutez vos designs de tatouage ici -->
+                    <div class="project-card">
+                        <div class="project-image-placeholder">
+                            <svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2a2 2 0 002-2V5a2 2 0 00-2-2z"/>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>Design Tatouage 1</h3>
+                            <p>Description du design, inspiration, style artistique, taille recommandée.</p>
+                            <div class="project-tags">
+                                <span class="tag">Traditional</span>
+                                <span class="tag">Black & Grey</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dupliquez cette structure pour chaque design -->
+                </div>
+            </div>
+        </div>
     </main>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-body" id="modalBody">
-                <!-- Contenu dynamique -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div class="contact-modal" id="contactModal">
-        <div class="modal-overlay"></div>
-        <div class="contact-content">
-            <button class="modal-close" id="contactClose">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="contact-header">
-                <h3>Contactez-moi</h3>
-                <p>Discutons de votre projet</p>
-            </div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong>
-                        <span>votre.email@example.com</span>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Téléphone</strong>
-                        <span>+33 X XX XX XX XX</span>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Localisation</strong>
-                        <span>Votre Ville, France</span>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-social">
-                <a href="#" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-behance"></i>
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="brand-logo">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                    <div>
-                        <h4>Portfolio Créatif</h4>
-                        <p>Créateur multi-talents passionné</p>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <a href="#3d">Maquettes 3D</a>
-                    <a href="#affiches">Affiches</a>
-                    <a href="#code">Développement</a>
-                    <a href="#tatouage">Tatouages</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Portfolio Professionnel. Tous droits réservés.</p>
-                <p>Fait avec <i class="fas fa-heart"></i> et beaucoup de créativité</p>
-            </div>
+            <p>&copy; 2025 Mon Portfolio. Tous droits réservés.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
