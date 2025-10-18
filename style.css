@@ -74,13 +74,6 @@ body {
     box-shadow: 0 2px 8px rgba(44, 36, 22, 0.15);
     z-index: 1000;
     border-bottom: 2px solid rgba(139, 119, 101, 0.3);
-    border-image: repeating-linear-gradient(
-        90deg,
-        rgba(139, 119, 101, 0.6),
-        rgba(139, 119, 101, 0.6) 10px,
-        transparent 10px,
-        transparent 15px
-    ) 2;
 }
 
 .nav-container {
@@ -187,6 +180,7 @@ body {
     font-size: 8rem;
     opacity: 0.05;
     transform: rotate(-15deg);
+    color: #8b7765;
 }
 
 .hero::after {
@@ -197,6 +191,7 @@ body {
     font-size: 8rem;
     opacity: 0.05;
     transform: rotate(15deg);
+    color: #8b7765;
 }
 
 .hero-content {
@@ -232,6 +227,7 @@ body {
     transform: translateY(-50%);
     font-size: 1.5rem;
     opacity: 0.4;
+    color: #8b7765;
 }
 
 .ink-title::before {
@@ -367,6 +363,7 @@ body {
     margin: 0 20px;
     opacity: 0.3;
     font-size: 0.8em;
+    color: #8b7765;
 }
 
 .section-description {
