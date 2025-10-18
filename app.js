@@ -1,279 +1,319 @@
-// Gestion des onglets
-document.addEventListener('DOMContentLoaded', function() {
-    initializeTabs();
-    addSmoothScrolling();
-    addProjectInteractions();
-    addLoadingAnimations();
-});
+// Effet de particules d'encre subtiles sur canvas
+const canvas = document.getElementById('inkCanvas');
+const ctx = canvas.getContext('2d');
 
-// Initialisation des onglets
-function initializeTabs() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTab = this.dataset.tab;
-            
-            // Retirer la classe active de tous les boutons et contenus
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Ajouter la classe active au bouton cliqué et au contenu correspondant
-            this.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
-            
-            // Animation de scroll vers le contenu si nécessaire
-            document.getElementById(targetTab).scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest'
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Classe pour les taches d'encre vintage
+class VintageInkSpot {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = Math.random() * 0.3 + 0.2;
+        this.size = Math.random() * 60 + 30;
+        this.opacity = Math.random() * 0.15 + 0.05;
+        this.life = 1;
+        this.decay = 0.001;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+        
+        // Formes irrégulières pour l'encre
+        this.spots = [];
+        for (let i = 0; i < 6; i++) {
+            this.spots.push({
+                angle: (Math.PI * 2 * i) / 6 + Math.random() * 0.5,
+                distance: Math.random() * 20 + 10
             });
-        });
-    });
-}
-
-// Défilement fluide pour les liens d'ancrage
-function addSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Interactions avec les cartes de projet
-function addProjectInteractions() {
-    const projectCards = document.querySelectorAll('.project-card, .code-project-card');
-    
-    projectCards.forEach(card => {
-        // Animation au survol
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-        
-        // Effet de clic
-        card.addEventListener('mousedown', function() {
-            this.style.transform = 'translateY(-4px) scale(0.98)';
-        });
-        
-        card.addEventListener('mouseup', function() {
-            this.style.transform = 'translateY(-8px) scale(1)';
-        });
-    });
-}
-
-// Animations de chargement
-function addLoadingAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-    
-    // Observer tous les éléments animables
-    document.querySelectorAll('.project-card, .code-project-card, .section-header').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Fonctions utilitaires pour ajouter facilement du contenu
-
-// Fonction pour ajouter un projet de maquette 3D
-function addModelingProject(title, description, imageUrl, tags, projectUrl) {
-    const container = document.getElementById('modeling-projects');
-    const projectCard = createProjectCard(title, description, imageUrl, tags, projectUrl);
-    container.appendChild(projectCard);
-}
-
-// Fonction pour ajouter un projet d'affiche
-function addPosterProject(title, description, imageUrl, tags, projectUrl) {
-    const container = document.getElementById('poster-projects');
-    const projectCard = createProjectCard(title, description, imageUrl, tags, projectUrl);
-    container.appendChild(projectCard);
-}
-
-// Fonction pour ajouter un projet de tatouage
-function addTattooProject(title, description, imageUrl, tags, projectUrl) {
-    const container = document.getElementById('tattoo-projects');
-    const projectCard = createProjectCard(title, description, imageUrl, tags, projectUrl);
-    container.appendChild(projectCard);
-}
-
-// Fonction pour ajouter un projet de code
-function addCodeProject(title, description, codeSnippet, tags, liveUrl, sourceUrl) {
-    const container = document.getElementById('code-projects');
-    const codeCard = createCodeProjectCard(title, description, codeSnippet, tags, liveUrl, sourceUrl);
-    container.appendChild(codeCard);
-}
-
-// Création d'une carte de projet standard
-function createProjectCard(title, description, imageUrl, tags = [], projectUrl = '#') {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    
-    const tagsHtml = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-    
-    card.innerHTML = `
-        <div class="project-image-placeholder">
-            ${imageUrl ? 
-                `<img src="${imageUrl}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">` :
-                `<svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>`
-            }
-        </div>
-        <div class="project-info">
-            <h3>${title}</h3>
-            <p>${description}</p>
-            <div class="project-tags">
-                ${tagsHtml}
-            </div>
-        </div>
-    `;
-    
-    if (projectUrl !== '#') {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => window.open(projectUrl, '_blank'));
+        }
     }
     
-    return card;
-}
-
-// Création d'une carte de projet de code
-function createCodeProjectCard(title, description, codeSnippet, tags = [], liveUrl = '#', sourceUrl = '#') {
-    const card = document.createElement('div');
-    card.className = 'code-project-card';
+    update() {
+        this.y += this.vy;
+        this.x += this.vx;
+        this.life -= this.decay;
+        this.size += 0.1;
+        this.rotation += this.rotationSpeed;
+        
+        this.vx *= 0.995;
+        this.vy *= 0.995;
+    }
     
-    const tagsHtml = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity * this.life;
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        
+        // Dessiner une forme irrégulière d'encre
+        ctx.fillStyle = '#8b7765';
+        ctx.beginPath();
+        
+        this.spots.forEach((spot, i) => {
+            const x = Math.cos(spot.angle) * spot.distance;
+            const y = Math.sin(spot.angle) * spot.distance;
+            
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        ctx.closePath();
+        ctx.fill();
+        
+        // Ajouter des petites taches autour
+        for (let i = 0; i < 3; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const dist = this.size * 0.5 + Math.random() * 20;
+            const spotX = Math.cos(angle) * dist;
+            const spotY = Math.sin(angle) * dist;
+            const spotSize = Math.random() * 3 + 2;
+            
+            ctx.beginPath();
+            ctx.arc(spotX, spotY, spotSize, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        ctx.restore();
+    }
     
-    card.innerHTML = `
-        <div class="code-project-header">
-            <h3>${title}</h3>
-            <div class="code-project-links">
-                ${liveUrl !== '#' ? `<a href="${liveUrl}" class="btn btn-sm" target="_blank">Voir le Site</a>` : ''}
-                ${sourceUrl !== '#' ? `<a href="${sourceUrl}" class="btn btn-sm btn-secondary" target="_blank">Code Source</a>` : ''}
-            </div>
-        </div>
-        <div class="code-preview">
-            <div class="code-preview-header">
-                <div class="code-preview-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <span class="code-preview-title">${title.toLowerCase().replace(/\s+/g, '-')}.html</span>
-            </div>
-            <pre class="code-preview-content"><code>${escapeHtml(codeSnippet)}</code></pre>
-        </div>
-        <div class="code-project-description">
-            <p>${description}</p>
-            <div class="project-tags">
-                ${tagsHtml}
-            </div>
-        </div>
-    `;
+    isDead() {
+        return this.life <= 0;
+    }
+}
+
+let inkSpots = [];
+let lastSpotTime = 0;
+
+// Créer des taches d'encre périodiquement
+function createInkSpot() {
+    const x = Math.random() * canvas.width;
+    const y = -50;
+    inkSpots.push(new VintageInkSpot(x, y));
+}
+
+// Animation douce
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    return card;
+    const now = Date.now();
+    if (now - lastSpotTime > 4000) {
+        createInkSpot();
+        lastSpotTime = now;
+    }
+    
+    inkSpots = inkSpots.filter(spot => {
+        spot.update();
+        spot.draw();
+        return !spot.isDead() && spot.y < canvas.height + 100;
+    });
+    
+    requestAnimationFrame(animate);
 }
 
-// Fonction utilitaire pour échapper le HTML
-function escapeHtml(text) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
-    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+animate();
+
+// Créer quelques taches initiales
+for (let i = 0; i < 2; i++) {
+    setTimeout(() => createInkSpot(), i * 2000);
 }
 
-// Gestion du mode sombre (optionnel)
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+// Navigation mobile
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Fermer le menu mobile lors du clic sur un lien
+document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+}));
+
+// Navigation active selon la section
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function highlightNavigation() {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
 }
 
-// Charger la préférence de mode sombre
-if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.add('dark-mode');
+window.addEventListener('scroll', highlightNavigation);
+
+// Scroll fluide pour les ancres
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 75;
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Lightbox pour les galeries
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const img = this.querySelector('img');
+        const overlay = this.querySelector('.gallery-overlay');
+        
+        lightbox.style.display = 'block';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        
+        if (overlay) {
+            const title = overlay.querySelector('h3').textContent;
+            const description = overlay.querySelector('p').textContent;
+            lightboxCaption.innerHTML = `<strong>${title}</strong><br>${description}`;
+        } else {
+            lightboxCaption.textContent = img.alt;
+        }
+        
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeLightbox() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
-// Exemples d'utilisation pour ajouter du contenu (décommentez et adaptez selon vos besoins)
+lightboxClose.addEventListener('click', closeLightbox);
 
-/*
-// Exemple d'ajout de projet de maquette 3D
-addModelingProject(
-    "Villa Moderne",
-    "Conception 3D d'une villa moderne de 200m² avec piscine et jardin paysager.",
-    "path/to/your/image.jpg",
-    ["Revit", "AutoCAD", "3D Studio Max"],
-    "https://lien-vers-votre-projet.com"
-);
+lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
 
-// Exemple d'ajout d'affiche
-addPosterProject(
-    "Festival de Musique 2024",
-    "Affiche promotionnelle pour le festival de musique électronique, design moderne et coloré.",
-    "path/to/your/poster.jpg",
-    ["Photoshop", "Illustrator", "Print Design"],
-    "https://lien-vers-votre-affiche.com"
-);
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.style.display === 'block') {
+        closeLightbox();
+    }
+});
 
-// Exemple d'ajout de projet de code
-addCodeProject(
-    "Site E-commerce",
-    "Boutique en ligne responsive avec panier d'achat et paiement intégré.",
-    `<!DOCTYPE html>
-<html>
-<head>
-    <title>Ma Boutique</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Ma Boutique</h1>
-        <nav>
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#produits">Produits</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-</body>
-</html>`,
-    ["HTML", "CSS", "JavaScript", "PHP"],
-    "https://votre-site.com",
-    "https://github.com/votre-username/projet"
-);
+// Animation au scroll avec effet de révélation
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
 
-// Exemple d'ajout de design de tatouage
-addTattooProject(
-    "Dragon Oriental",
-    "Design traditionnel japonais représentant un dragon dans les nuages, style noir et gris.",
-    "path/to/your/tattoo-design.jpg",
-    ["Traditional", "Japanese", "Black & Grey"],
-    "https://lien-vers-votre-design.com"
-);
-*/
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.gallery-item, .project-card, .section-title, .section-description').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(el);
+});
+
+// Gestion des erreurs d'images avec style vintage
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', function() {
+        this.style.display = 'none';
+        const parent = this.closest('.gallery-item, .project-image');
+        if (parent) {
+            parent.style.background = 'linear-gradient(135deg, #e9dcc9, #d4c5b0)';
+            parent.style.position = 'relative';
+            
+            const placeholder = document.createElement('div');
+            placeholder.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #8b7765;
+                font-size: 3rem;
+                font-family: 'Playfair Display', serif;
+                text-align: center;
+                width: 100%;
+            `;
+            placeholder.innerHTML = '◆<br><span style="font-size: 1rem; letter-spacing: 2px;">IMAGE</span>';
+            parent.appendChild(placeholder);
+        }
+    });
+});
+
+// Effet de survol sur les ornements
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+        this.style.letterSpacing = '2px';
+    });
+    
+    link.addEventListener('mouseleave', function() {
+        this.style.letterSpacing = '1px';
+    });
+});
+
+// Ajouter un effet de texture au scroll
+let ticking = false;
+
+function updateTexture() {
+    const scrolled = window.pageYOffset;
+    const sections = document.querySelectorAll('.section');
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const opacity = 1 - Math.abs(rect.top) / window.innerHeight;
+            section.style.filter = `sepia(${opacity * 10}%)`;
+        }
+    });
+    
+    ticking = false;
+}
+
+window.addEventListener('scroll', function() {
+    if (!ticking) {
+        window.requestAnimationFrame(updateTexture);
+        ticking = true;
+    }
+});
+
+console.log('Portfolio vintage chargé avec succès !');
