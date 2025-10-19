@@ -292,7 +292,7 @@ body {
 /* Projets Web */
 .web-projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 400px au lieu de 350px */
     gap: 3rem;
     margin-top: 3rem;
 }
@@ -625,9 +625,10 @@ body {
 }
 /* AJOUTEZ CE CODE À LA FIN DE VOTRE FICHIER style.css */
 
-.project-image iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+.project-image {
+    aspect-ratio: 16/9;  /* Plus large (au lieu de 16/10) */
+    overflow: hidden;
+    position: relative;
+    min-height: 350px;   /* Hauteur minimale plus grande */
     pointer-events: none; /* Empêche l'interaction dans l'aperçu */
 }
