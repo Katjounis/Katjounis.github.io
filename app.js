@@ -162,20 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     // ========================================
-    // EFFET PARALLAX SUR LE HERO
-    // ========================================
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        const rate = scrolled * -0.5;
-
-        if (hero) {
-            hero.style.transform = `translateY(${rate}px)`;
-        }
-    });
-
-    
-    // ========================================
     // GESTION DES ERREURS D'IMAGES
     // Si une image ne charge pas, afficher un placeholder
     // ========================================
