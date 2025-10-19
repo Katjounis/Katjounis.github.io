@@ -628,5 +628,6 @@ body {
 .project-image iframe {
     width: 100%;
     height: 100%;
-    border: none; /* Pour enlever la bordure par défaut */
+    border: none;
+    pointer-events: none; /* Empêche l'interaction dans l'aperçu */
 }
