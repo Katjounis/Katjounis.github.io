@@ -13,7 +13,7 @@ body {
     font-family: 'Lora', serif;
     line-height: 1.8;
     color: #1a1a2e;
-    background: #f8f9fa;
+    background: transparent; /* <-- Fond transparent */
     position: relative;
     overflow-x: hidden;
 }
@@ -29,7 +29,7 @@ body {
     background-size: cover;      /* couvre tout l’écran */
     background-position: center; /* centre l’image */
     background-repeat: no-repeat;
-    opacity: 0.1;                /* transparence optionnelle */
+    opacity: 0.6;                /* transparence optionnelle */
     z-index: -1;
 }
 
@@ -118,7 +118,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: #ffffff;
+    background: transparent; /* <-- Fond transparent */
 }
 
 .hero-content {
@@ -190,7 +190,7 @@ body {
 }
 
 .alt-bg {
-    background: #ffffff;
+    background: transparent; /* <-- Fond transparent */
 }
 
 .section-title {
