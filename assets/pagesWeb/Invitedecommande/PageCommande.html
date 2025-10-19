@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Riptide BDE - Passer une commande</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+  <style>
+    /* Déclaration de la police Barbra */
+    @font-face {
+      font-family: 'Barbra';
+      src: url('./barbra.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* --- CHARTE GRAPHIQUE RIPTIDE UNIFIÉE - "SUNSET VOYAGE" --- */
+    :root {
+      --bg-light: #F8F5F2;          /* Fond sable clair */
+      --card-bg: #FFFFFF;           /* Cartes blanches pures */
+      --text-dark: #2c3e50;         /* Texte sombre (gris-bleu) */
+      --text-light: #7f8c8d;        /* Texte secondaire plus clair */
+      --text-light-rgb: 127, 140, 141; /* Version RGB pour opacité */
+      --accent-primary: #FF6B6B;     /* Orange coucher de soleil */
+      --accent-secondary: #489FB5;   /* Bleu crépuscule */
+      --accent-yellow: #feca57;     /* Jaune soleil doux */
+      --border-color: #EAEAEA;
+      --shadow-color: rgba(44, 62, 80, 0.1);
+      --success-green: #2ecc71;
+      --warning-orange: #f39c12;
+      --danger-red: #e74c3c;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Barbra', sans-serif;
+      margin: 0;
+      color: var(--text-dark);
+      background: url("https://static.vecteezy.com/system/resources/previews/002/042/985/non_2x/cloudy-mountain-sunset-scene-vector.jpg") center/cover no-repeat fixed;
+      position: relative;
+      z-index: 1;
+      padding-bottom: 20px;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: rgba(248, 245, 242, 0.85);
+      z-index: -1;
+    }
+    
+    .wrap { max-width: 960px; margin: auto; padding: 20px; }
+    
+    header { text-align: center; margin-bottom: 32px; }
+    header img { 
+      max-width: 250px; height: auto; border-radius: 50%;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      border: 3px solid var(--card-bg);
+    }
+    
+    h2 {
+      font-family: 'Luckiest Guy', cursive; margin: 16px 0 24px; color: var(--accent-primary);
+      font-size: 3rem;
+      font-weight: normal; letter-spacing: 2px; text-shadow: none;
+    }
+    
+    h3 { 
+      color: var(--text-dark); font-weight: 700; font-size: 1.5em; margin: 0 0 20px 0;
+      display: flex; align-items: center; gap: 12px;
+    }
+    h3 i { color: var(--accent-secondary); font-size: 1.2em; }
+
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 20px; margin-bottom: 20px; padding: 24px;
+      box-shadow: 0 4px 6px var(--shadow-color), 0 10px 20px var(--shadow-color);
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0); } }
+
+    /* --- Style des boutons d'articles (carrés, prix en dessous) --- */
+    .menu-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 15px;
+    }
+    .menu-buttons button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 15px;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .menu-buttons button .item-name {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 5px;
+    }
+    .menu-buttons button .item-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+    }
+    #col-cartes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    #col-cartes button {
+        aspect-ratio: auto;
+        min-height: 80px;
+        padding: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #col-cartes button .item-name {
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+
+    #col-cartes button .item-price {
+        font-size: 1.2rem;
+    }
+    /* --- Style des boutons de paiement --- */
+    .pay-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+    }
+    .pay-buttons button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 120px;
+    }
+    .pay-buttons button i { font-size: 1.8rem; }
+
+    .menu-buttons button:hover, .pay-buttons button:hover {
+      transform: translateY(-3px) scale(1.03);
+      border-color: var(--accent-primary);
+      background: white;
+      color: var(--accent-primary);
+      box-shadow: 0 4px 10px var(--shadow-color);
+    }
+    .pay-buttons button.selected {
+      background: var(--success-green) !important; color: white !important;
+      border-color: var(--success-green) !important;
+      box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+    }
+    
+    td .btn-icon-sm {
+      border-radius: 16px;
+      width: 55px; height: 55px;
+      padding: 0; 
+      font-size: 1.6rem;
+      border: 1px solid var(--border-color);
+      background: white; color: var(--text-light);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s ease;
+    }
+    td .btn-icon-sm:hover { transform: scale(1.1); box-shadow: 0 2px 4px var(--shadow-color); }
+    .btn-increment:hover { color: var(--success-green); border-color: var(--success-green); }
+    .btn-decrement:hover { color: var(--accent-yellow); border-color: var(--accent-yellow); }
+    .btn-delete:hover { color: var(--accent-primary); border-color: var(--accent-primary); }
+    
+    /* --- Grille principale en 3 colonnes --- */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .menu-col h4 { margin: 0 0 15px; font-size: 1.3em; font-weight: 600; color: var(--text-dark); }
+    
+    @media (max-width: 768px) {
+        .menu-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    table {
+      width:100%; border-collapse:collapse; margin-top:16px;
+      font-size: 1.2rem;
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);
+    }
+    th, td { border-bottom:1px solid var(--border-color); padding: 16px; text-align: left; }
+    th { background: var(--bg-light); color: var(--text-dark); font-weight: 600; }
+    td { vertical-align: middle; }
+    tbody tr:last-child td { border-bottom: none; }
+    .cart-quantity-controls { display: flex; align-items: center; gap: 12px; }
+    .cart-quantity-controls span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        min-width: 25px;
+        text-align: center;
+    }
+    .cart-total {
+        text-align: right; font-size: 1.8em; font-weight: 700;
+        margin-top: 20px; color: var(--text-dark);
+    }
+    .cart-total span { color: var(--accent-primary); }
+
+    /* 🚀 SYSTÈME D'AUTOCOMPLÉTION OPTIMISÉ POUR CHARGEMENT RAPIDE */
+    .autocomplete-container {
+      position: relative;
+      width: 100%;
+    }
+    
+    .autocomplete-input {
+      width: 100%; 
+      padding: 24px;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      font-size: 1.2rem;
+      background: var(--card-bg);
+      font-family: 'Barbra', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      color: var(--text-dark);
+    }
+    
+    .autocomplete-input:focus {
+      outline: none; 
+      border-color: var(--accent-secondary);
+      box-shadow: 0 0 0 4px rgba(72, 159, 181, 0.2);
+    }
+    
+    .autocomplete-input.invalid {
+      border-color: var(--danger-red);
+      box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
+    }
+    
+    .autocomplete-input.valid {
+      border-color: var(--success-green);
+      box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2);
+    }
+    
+    .autocomplete-input::placeholder {
+      color: var(--text-light);
+    }
+    
+    .autocomplete-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border: 2px solid var(--accent-secondary);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      max-height: 240px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 15px var(--shadow-color);
+    }
+    
+    .autocomplete-suggestion {
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .autocomplete-suggestion:last-child {
+      border-bottom: none;
+    }
+    
+    .autocomplete-suggestion:hover {
+      background-color: var(--bg-light);
+    }
+    
+    .autocomplete-suggestion.highlighted {
+      background-color: var(--accent-secondary);
+      color: white;
+    }
+    
+    .autocomplete-no-results {
+      padding: 16px 24px;
+      color: var(--text-light);
+      font-style: italic;
+      text-align: center;
+    }
+    
+    /* 🚀 INDICATEUR DE CHARGEMENT OPTIMISÉ */
+    .autocomplete-loading {
+      position: relative;
+    }
+    .autocomplete-loading::after {
+      content: "⚡";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 25px;
+      height: 25px;
+      color: var(--accent-primary);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fastPulse 0.8s linear infinite;
+    }
+    @keyframes fastPulse {
+      0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+      50% { opacity: 0.5; transform: translateY(-50%) scale(1.1); }
+    }
+
+    /* Style pour les messages de validation en temps réel */
+    .validation-message {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 500;
+      display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    .validation-message.error {
+      background-color: rgba(231, 76, 60, 0.1);
+      color: var(--danger-red);
+      border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+    
+    .validation-message.success {
+      background-color: rgba(46, 204, 113, 0.1);
+      color: var(--success-green);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input[type="text"] {
+      width: 100%; padding: 24px;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      font-size: 1.2rem;
+      background: var(--bg-light);
+      font-family: 'Barbra', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input[type="text"]:focus {
+      outline: none; border-color: var(--accent-secondary);
+      box-shadow: 0 0 0 4px rgba(72, 159, 181, 0.2);
+    }
+    
+    #btnSubmit {
+      border: none; border-radius: 16px; padding: 20px; font-size: 1.3rem;
+      font-weight: 700; font-family: 'Barbra', sans-serif; color: white;
+      letter-spacing: 1px; width: 100%; cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-yellow));
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+    #btnSubmit:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+    #btnSubmit:disabled {
+        background: #bdc3c7; box-shadow: none; cursor: not-allowed;
+        opacity: 0.6;
+    }
+    
+    .ticket-full {
+      position:fixed; inset:0; background:rgba(44, 62, 80, 0.85);
+      display:none; justify-content:center; align-items: flex-start;
+      z-index:1000; padding: 5vh 15px; overflow-y: auto;
+    }
+    .ticket {
+      max-width: 500px; width:100%; background: var(--card-bg);
+      border-radius: 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease-out; overflow: hidden; position: relative;
+    }
+    .close-ticket-btn {
+        position: absolute; top: 12px; right: 12px;
+        width: 36px; height: 36px; border: none; background: rgba(0,0,0,0.2);
+        color: white; border-radius: 50%; font-size: 22px; line-height: 36px;
+        text-align: center; cursor: pointer; transition: background 0.2s; z-index: 10;
+    }
+    .close-ticket-btn:hover { background: rgba(0,0,0,0.4); }
+    .ticket-header { 
+      text-align:center; font-size: 2em; font-weight:bold; color: white;
+      font-family: 'Luckiest Guy', cursive; letter-spacing: 1.5px; padding: 24px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-yellow));
+      display: flex; justify-content: center; align-items: center; gap: 15px;
+    }
+    .ticket-body { padding: 24px; }
+    .ticket-order-highlight {
+        background-color: var(--bg-light); border-radius: 12px;
+        padding: 16px; text-align: center; margin-bottom: 24px;
+    }
+    .ticket-order-highlight span {
+        display: block; font-size: 1em; color: var(--text-light); margin-bottom: 4px;
+    }
+    .ticket-order-highlight strong {
+        font-size: 2.8em; font-weight: 700; color: var(--accent-primary);
+        line-height: 1; font-family: 'Barbra', sans-serif;
+    }
+    .ticket-info { margin-bottom: 20px; line-height: 1.7; }
+    .ticket-info div { font-size: 1.1em; }
+    .ticket-info b { color: var(--text-dark); }
+    .ticket-sep { border-top:2px dashed var(--border-color); margin:24px 0; }
+    .ticket-line { 
+        display:flex; justify-content:space-between; 
+        font-size: 1.1em; padding: 12px 0; 
+        border-bottom: 1px solid var(--border-color);
+    }
+    .ticket-line:last-of-type { border-bottom: none; }
+    .ticket-line span:last-child { font-weight: 700; }
+    .ticket-total { 
+        display:flex; justify-content:space-between; font-size:1.6em; font-weight:700; 
+        margin-top:20px; padding: 24px;
+        border-top:2px solid var(--text-dark); 
+        background-color: var(--bg-light);
+    }
+    .ticket-footer { text-align:center; padding: 20px; font-size:1.1em; color: var(--text-light); }
+    .patience-section {
+      padding: 20px 24px;
+      background: var(--bg-light);
+      border-top: 2px dashed var(--border-color);
+      text-align: center;
+    }
+    .patience-section h4 {
+      margin: 0 0 16px 0;
+      font-size: 1.2em;
+      color: var(--accent-secondary);
+      font-weight: 600;
+    }
+    .patience-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-bottom: 16px;
+      transition: opacity 0.3s ease, transform 0.3s ease; /* AJOUTER CETTE LIGNE */
+    }
+
+    /* NOUVEAU : Style du bouton changer de GIF */
+    .btn-change-gif {
+      padding: 12px 24px;
+      background: var(--accent-primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 12px;
+      font-family: 'Barbra', sans-serif;
+    }
+    .btn-change-gif:hover {
+      background: var(--accent-yellow);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    .btn-change-gif i {
+      margin-right: 8px;
+    }
+    .msg-box { margin-top: 16px; padding: 12px; border-radius: 8px; font-weight: 500; text-align: center; }
+    .err { background-color: rgba(255, 107, 107, 0.15); color: #c0392b; }
+    .ok { background-color: rgba(46, 204, 113, 0.15); color: #27ae60; }
+    
+    /* 🚀 NOTIFICATION DE PERFORMANCE */
+    .performance-indicator {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--success-green);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.3s ease;
+    }
+    
+    .performance-indicator.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <img src="https://i.imgur.com/I7UtD7C.png" alt="Riptide Logo" width="275" height="300" />
+      <h2>Passer une commande</h2>
+    </header>
+
+    <div class="card">
+      <h3><i class="fa-solid fa-user-astronaut"></i> Sélectionner l'élève</h3>
+      <div id="selectEleveContainer" class="autocomplete-loading">
+        <div class="autocomplete-container">
+          <input type="text" 
+                 id="inputEleve" 
+                 class="autocomplete-input"
+                 placeholder="Chargement des étudiants Builders..."
+                 autocomplete="off"
+                 readonly>
+          <div id="autocompleteSuggestions" class="autocomplete-suggestions"></div>
+        </div>
+        <div id="validationMessage" class="validation-message"></div>
+        <button id="btnRefreshEleves" onclick="forceRefreshEleves()" style="display:none; margin-top:12px; padding:8px 16px; border:1px solid var(--border-color); background:var(--bg-light); border-radius:8px; cursor:pointer; font-size:0.9rem; color:var(--text-light); transition: all 0.2s;">
+          <i class="fa-solid fa-rotate"></i> Rafraîchir la liste des élèves
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+        <h3><i class="fa-solid fa-utensils"></i> Choix du butin</h3>
+        <div class="menu-grid">
+          <div class="menu-col"><h4>🍽 Repas</h4><div id="col-repas" class="menu-buttons"></div></div>
+          <div class="menu-col"><h4>🥤 Boissons</h4><div id="col-boissons" class="menu-buttons"></div></div>
+          <div class="menu-col"><h4>🍪 Extras</h4><div id="col-autres" class="menu-buttons"></div></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3><i class="fa-solid fa-credit-card"></i> Cartes Riptide</h3>
+        <div id="col-cartes" class="menu-buttons"></div>
+    </div>
+
+    <div class="card">
+      <h3><i class="fa-solid fa-scroll"></i> Commentaire / Précision</h3>
+      <input type="text" id="commentaire" placeholder="Sans cornichons, bien cuit..." maxlength="20">
+    </div>
+
+    <div class="card">
+      <h3><i class="fa-solid fa-shopping-cart"></i> Panier</h3>
+      <table>
+        <thead><tr><th>Article</th><th>Qté</th><th>Prix</th><th>Total</th><th></th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="cart-total">Total : <span id="total">0.00</span> €</div>
+    </div>
+
+    <div class="card">
+          <h3><i class="fa-solid fa-coins"></i> Mode de paiement</h3>
+          <div class="pay-buttons">
+            <button onclick="choisirPaiement('Espèces', event)"><i class="fa-solid fa-money-bill-wave"></i> Espèces</button>
+            <button onclick="choisirPaiement('Carte bancaire', event)"><i class="fa-regular fa-credit-card"></i> Carte bancaire</button>
+            <button onclick="choisirPaiement('Carte Riptide', event)"><i class="fa-solid fa-wallet"></i> Carte Riptide</button>
+          </div>
+          <input type="hidden" id="paiement">
+          <div id="carteRiptideInfo" style="display:none; margin-top:16px; padding:16px; background:var(--bg-light); border-radius:12px; border:2px solid var(--accent-secondary);"></div>
+        </div>
+      <input type="hidden" id="paiement">
+    </div>
+
+    <div style="text-align:center;">
+      <button id="btnSubmit" onclick="valider()"><i class="fa-solid fa-check"></i> Valider la commande</button>
+      <div id="msg" class="msg-box"></div>
+    </div>
+
+  </div>
+
+  <div id="ticket" class="ticket-full">
+    <div class="ticket">
+      <button class="close-ticket-btn" onclick="closeTicket()">×</button>
+      <div id="ticketBody"></div>
+      <div class="patience-section">
+        <h4>🎭 Un peu de patience...</h4>
+        <img id="patienceGif" src="" alt="Gif drôle">
+        <div>
+          <button class="btn-change-gif" onclick="changerGif()">
+            <i class="fa-solid fa-shuffle"></i> Changer de GIF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let MENU=[], PANIER=[], ELEVES=[];
+  // 🚀 SYSTÈME DE CACHE POUR CHARGEMENT INSTANTANÉ
+  const CacheManager = {
+    CACHE_KEY_ELEVES: 'riptide_eleves_cache',
+    CACHE_KEY_TIMESTAMP: 'riptide_eleves_timestamp',
+    CACHE_DURATION: 24 * 60 * 60 * 1000, // 24 heures
+    
+    saveEleves: (eleves) => {
+      try {
+        localStorage.setItem(CacheManager.CACHE_KEY_ELEVES, JSON.stringify(eleves));
+        localStorage.setItem(CacheManager.CACHE_KEY_TIMESTAMP, Date.now().toString());
+        console.log(`💾 ${eleves.length} élèves mis en cache`);
+      } catch(e) {
+        console.warn("⚠️ Impossible de sauvegarder le cache:", e);
+      }
+    },
+    
+    getEleves: () => {
+      try {
+        const timestamp = localStorage.getItem(CacheManager.CACHE_KEY_TIMESTAMP);
+        const cached = localStorage.getItem(CacheManager.CACHE_KEY_ELEVES);
+        
+        if (!timestamp || !cached) return null;
+        
+        const age = Date.now() - parseInt(timestamp);
+        if (age > CacheManager.CACHE_DURATION) {
+          console.log("⏰ Cache expiré, rechargement nécessaire");
+          return null;
+        }
+        
+        const eleves = JSON.parse(cached);
+        console.log(`⚡ ${eleves.length} élèves chargés depuis le cache (${Math.round(age/1000/60)}min)`);
+        return eleves;
+      } catch(e) {
+        console.warn("⚠️ Erreur lecture cache:", e);
+        return null;
+      }
+    },
+    
+    clearCache: () => {
+      localStorage.removeItem(CacheManager.CACHE_KEY_ELEVES);
+      localStorage.removeItem(CacheManager.CACHE_KEY_TIMESTAMP);
+      console.log("🗑️ Cache effacé");
+    }
+  };
+  let selectedEleveIndex = -1; // Pour la navigation au clavier
+  let isValidEleve = false; // État de validation du nom d'élève
+  let carteRiptideInfo = null; // Stocker les infos de carte
+  const q = s => document.querySelector(s);
+  
+  // 🚀 VARIABLES DE PERFORMANCE OPTIMISÉES
+  const performanceTracker = {
+    startTime: Date.now(),
+    elevesLoadTime: 0,
+    menuLoadTime: 0,
+    totalLoadTime: 0
+  };
+
+  // Helpers partagés optimisés
+  const RiptideHelpers = {
+    showMessage: (txt, isError) => {
+      const m = q("#msg"); 
+      m.textContent = txt; 
+      m.className = isError ? "msg-box err" : "msg-box ok";
+    },
+    
+    showValidationMessage: (txt, isError) => {
+      const m = q("#validationMessage");
+      if (!txt) {
+        m.style.display = "none";
+        m.textContent = "";
+        m.className = "validation-message";
+        return;
+      }
+      m.textContent = txt;
+      m.className = isError ? "validation-message error" : "validation-message success";
+      m.style.display = "block";
+    },
+    
+    updateSubmitButton: () => {
+      const hasValidEleve = isValidEleve;
+      const hasItems = PANIER.length > 0;
+      const hasPayment = q("#paiement").value !== "";
+      
+      const canSubmit = hasValidEleve && hasItems && hasPayment;
+      q("#btnSubmit").disabled = !canSubmit;
+    },
+    
+    disableSubmit: (disabled) => {
+      q("#btnSubmit").disabled = disabled;
+    },
+    
+    formatPrice: (price) => {
+      return parseFloat(price).toFixed(2);
+    },
+    
+    resetForm: () => {
+      q("#inputEleve").value = "";
+      q("#inputEleve").dataset.selectedEleve = "";
+      q("#inputEleve").classList.remove("valid", "invalid");
+      q("#commentaire").value = "";
+      document.querySelectorAll(".pay-buttons button").forEach(b=>b.classList.remove("selected"));
+      q("#paiement").value = "";
+      isValidEleve = false;
+      hideSuggestions();
+      RiptideHelpers.showValidationMessage("");
+      PANIER = [];
+      renderPanier();
+      RiptideHelpers.updateSubmitButton();
+    }
+  };
+
+  // 🚀 SYSTÈME D'AUTOCOMPLÉTION OPTIMISÉ POUR CHARGEMENT ULTRA-RAPIDE
+  function setupAutocomplete() {
+    const input = q("#inputEleve");
+    const suggestions = q("#autocompleteSuggestions");
+    
+    // Événements sur l'input
+    input.addEventListener("input", handleInputChange);
+    input.addEventListener("keydown", handleKeyDown);
+    input.addEventListener("blur", handleInputBlur);
+    input.addEventListener("focus", handleInputFocus);
+    
+    // Clic en dehors pour fermer les suggestions
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".autocomplete-container")) {
+        hideSuggestions();
+      }
+    });
+  }
+  
+  function handleInputChange(e) {
+    const value = e.target.value.trim();
+    selectedEleveIndex = -1;
+    
+    // Réinitialiser l'état de validation
+    isValidEleve = false;
+    e.target.dataset.selectedEleve = "";
+    e.target.classList.remove("valid", "invalid");
+    RiptideHelpers.showValidationMessage("");
+    RiptideHelpers.updateSubmitButton();
+    
+    if (value === "") {
+      hideSuggestions();
+      return;
+    }
+    
+    // 🚀 RECHERCHE OPTIMISÉE : vérification exacte d'abord
+    const exactMatch = ELEVES.find(eleve => 
+      eleve.toLowerCase() === value.toLowerCase()
+    );
+    
+    if (exactMatch) {
+      // Correspondance exacte trouvée
+      isValidEleve = true;
+      e.target.dataset.selectedEleve = exactMatch;
+      e.target.classList.add("valid");
+      RiptideHelpers.showValidationMessage("✅ Élève validé", false);
+      hideSuggestions();
+      RiptideHelpers.updateSubmitButton();
+      return;
+    }
+    
+    // 🚀 FILTRAGE OPTIMISÉ avec toLowerCase pré-calculé
+    const valueLower = value.toLowerCase();
+    const filtered = ELEVES.filter(eleve => 
+      eleve.toLowerCase().includes(valueLower)
+    );
+    
+    if (filtered.length === 0) {
+      // Aucune correspondance
+      e.target.classList.add("invalid");
+      RiptideHelpers.showValidationMessage("❌ Aucun élève trouvé avec ce nom", true);
+      hideSuggestions();
+    } else {
+      // Correspondances partielles trouvées
+      e.target.classList.add("invalid");
+      RiptideHelpers.showValidationMessage("⚠️ Veuillez sélectionner un élève dans la liste", true);
+      showSuggestions(filtered, value);
+    }
+    
+    RiptideHelpers.updateSubmitButton();
+  }
+  
+  function handleKeyDown(e) {
+    const suggestions = q("#autocompleteSuggestions");
+    const items = suggestions.querySelectorAll(".autocomplete-suggestion");
+    
+    if (suggestions.style.display === "none" || items.length === 0) return;
+    
+    switch(e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        selectedEleveIndex = Math.min(selectedEleveIndex + 1, items.length - 1);
+        updateHighlight(items);
+        break;
+        
+      case "ArrowUp":
+        e.preventDefault();
+        selectedEleveIndex = Math.max(selectedEleveIndex - 1, -1);
+        updateHighlight(items);
+        break;
+        
+      case "Enter":
+        e.preventDefault();
+        if (selectedEleveIndex >= 0 && items[selectedEleveIndex]) {
+          selectEleve(items[selectedEleveIndex].textContent.replace(/<[^>]*>/g, ''));
+        }
+        break;
+        
+      case "Escape":
+        hideSuggestions();
+        selectedEleveIndex = -1;
+        break;
+    }
+  }
+  
+  function handleInputBlur(e) {
+    // Petit délai pour permettre le clic sur une suggestion
+    setTimeout(() => {
+      const currentValue = e.target.value.trim();
+      const selectedEleve = e.target.dataset.selectedEleve;
+      
+      // Si la valeur ne correspond pas exactement à un élève sélectionné
+      if (currentValue && !selectedEleve) {
+        e.target.classList.add("invalid");
+        isValidEleve = false;
+        RiptideHelpers.showValidationMessage("❌ Nom d'élève non valide", true);
+        RiptideHelpers.updateSubmitButton();
+      }
+      
+      hideSuggestions();
+    }, 150);
+  }
+  
+  function handleInputFocus(e) {
+    const value = e.target.value;
+    if (value.trim() !== "" && !isValidEleve) {
+      handleInputChange(e);
+    }
+  }
+  
+  function showSuggestions(filtered, inputValue) {
+    const suggestions = q("#autocompleteSuggestions");
+    selectedEleveIndex = -1;
+    
+    if (filtered.length === 0) {
+      suggestions.innerHTML = '<div class="autocomplete-no-results">Aucun élève trouvé</div>';
+      suggestions.style.display = "block";
+      return;
+    }
+    
+    // 🚀 GÉNÉRATION OPTIMISÉE des suggestions avec mise en surbrillance
+    const regex = new RegExp(`(${inputValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const suggestionsHTML = filtered.map(eleve => {
+      const highlightedName = eleve.replace(regex, '<strong>$1</strong>');
+      return `<div class="autocomplete-suggestion" onclick="selectEleve('${eleve.replace(/'/g, "\\'")}')">${highlightedName}</div>`;
+    }).join("");
+    
+    suggestions.innerHTML = suggestionsHTML;
+    suggestions.style.display = "block";
+  }
+  
+  function hideSuggestions() {
+    q("#autocompleteSuggestions").style.display = "none";
+    selectedEleveIndex = -1;
+  }
+  
+  function updateHighlight(items) {
+    items.forEach((item, index) => {
+      item.classList.toggle("highlighted", index === selectedEleveIndex);
+    });
+  }
+  
+  function selectEleve(eleve) {
+      const input = q("#inputEleve");
+      input.value = eleve;
+      input.dataset.selectedEleve = eleve;
+      input.classList.remove("invalid");
+      input.classList.add("valid");
+      isValidEleve = true;
+      hideSuggestions();
+      RiptideHelpers.showValidationMessage("✅ Élève validé", false);
+      RiptideHelpers.showMessage("");
+      
+      // CORRECTION : Réinitialiser les infos de paiement si l'élève change
+      const carteInfoDiv = q("#carteRiptideInfo");
+      if (carteInfoDiv.style.display === "block") {
+        carteInfoDiv.style.display = "none";
+        document.querySelectorAll(".pay-buttons button").forEach(b => b.classList.remove("selected"));
+        q("#paiement").value = "";
+      }
+      
+      RiptideHelpers.updateSubmitButton();
+    }
+
+  // 🚀 INITIALISATION OPTIMISÉE AVEC CACHE
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("🚀 Démarrage optimisé de l'interface de commande...");
+    performanceTracker.startTime = Date.now();
+    
+    setupAutocomplete();
+    RiptideHelpers.updateSubmitButton();
+    
+    // 🚀 CHARGEMENT INSTANTANÉ DEPUIS LE CACHE
+    const cachedEleves = CacheManager.getEleves();
+    
+    if (cachedEleves && cachedEleves.length > 0) {
+      performanceTracker.elevesLoadTime = 0;
+      initEleves(cachedEleves);
+      
+      // Rafraîchissement silencieux en arrière-plan
+      google.script.run
+        .withSuccessHandler(data => {
+          if (JSON.stringify(data) !== JSON.stringify(cachedEleves)) {
+            console.log("🔄 Liste mise à jour en arrière-plan");
+            CacheManager.saveEleves(data);
+          }
+        })
+        .withFailureHandler(err => console.warn("⚠️ Échec rafraîchissement:", err))
+        .getEleves();
+    } else {
+      // Premier chargement
+      const startEleves = Date.now();
+      google.script.run
+        .withSuccessHandler(data => {
+          performanceTracker.elevesLoadTime = Date.now() - startEleves;
+          CacheManager.saveEleves(data);
+          initEleves(data);
+        })
+        .withFailureHandler(err => {
+          console.error("❌ Échec chargement élèves:", err);
+          setupFallbackInput();
+        })
+        .getEleves();
+    }
+    
+    // Menu (toujours depuis le serveur)
+    const startMenu = Date.now();
+    google.script.run
+      .withSuccessHandler(data => {
+        performanceTracker.menuLoadTime = Date.now() - startMenu;
+        initMenu(data);
+      })
+      .withFailureHandler(err => {
+        console.error("❌ Échec chargement menu:", err);
+        RiptideHelpers.showMessage("Erreur menu: " + err.message, true);
+      })
+      .getMenu();
+    
+    setTimeout(() => showPerformanceIndicator(), 100);
+  });
+
+  function initEleves(eleves) {
+    ELEVES = eleves || [];
+    console.log(`📚 ${ELEVES.length} élèves chargés en ${performanceTracker.elevesLoadTime}ms`);
+    
+    const input = q("#inputEleve");
+    const container = q("#selectEleveContainer");
+    
+    // Retirer l'indicateur de chargement
+    container.classList.remove("autocomplete-loading");
+    
+    if (ELEVES.length === 0) {
+      // Si aucun élève trouvé, afficher un message et permettre saisie libre en fallback
+      input.placeholder = "❌ Aucun élève trouvé dans l'onglet 'Eleves'";
+      input.readOnly = false;
+      setupFallbackInput();
+      RiptideHelpers.showMessage("Aucun élève trouvé. Vérifiez l'onglet 'Eleves'.", true);
+      return;
+    }
+    
+    // 🚀 Activer l'input avec placeholder optimisé
+    input.placeholder = `⚡ Trouvez votre nom parmi les ${ELEVES.length} élèves...`;
+    input.readOnly = false;
+    // Afficher le bouton de rafraîchissement
+    const refreshBtn = q("#btnRefreshEleves");
+    if (refreshBtn) refreshBtn.style.display = "block";
+    
+    console.log("✅ Système d'autocomplétion ultra-rapide initialisé");
+  }
+  function forceRefreshEleves() {
+    const btn = q("#btnRefreshEleves");
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rafraîchissement...';
+    
+    CacheManager.clearCache();
+    
+    google.script.run
+      .withSuccessHandler(data => {
+        CacheManager.saveEleves(data);
+        initEleves(data);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Liste mise à jour !';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-rotate"></i> Rafraîchir la liste des élèves';
+        }, 2000);
+      })
+      .withFailureHandler(err => {
+        console.error("❌ Erreur:", err);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-xmark"></i> Erreur';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-rotate"></i> Rafraîchir la liste des élèves';
+        }, 2000);
+      })
+      .getEleves();
+  }
+  function setupFallbackInput() {
+    // En cas d'erreur, permettre la saisie libre mais afficher un avertissement
+    const container = q("#selectEleveContainer");
+    const input = q("#inputEleve");
+    
+    input.readOnly = false;
+    input.placeholder = "🔄 Saisissez votre nom (mode libre)...";
+    
+    // En mode fallback, accepter toute saisie non vide
+    input.addEventListener("input", (e) => {
+      const value = e.target.value.trim();
+      if (value) {
+        isValidEleve = true;
+        e.target.classList.remove("invalid");
+        e.target.classList.add("valid");
+        RiptideHelpers.showValidationMessage("⚠️ Nom accepté (mode libre)", false);
+      } else {
+        isValidEleve = false;
+        e.target.classList.remove("valid");
+        RiptideHelpers.showValidationMessage("");
+      }
+      RiptideHelpers.updateSubmitButton();
+    });
+    
+    // Ajouter un message d'avertissement s'il n'existe pas déjà
+    if (!container.querySelector(".fallback-warning")) {
+      const warningDiv = document.createElement("div");
+      warningDiv.className = "fallback-warning";
+      warningDiv.style.cssText = "font-size: 0.9em; color: var(--warning-orange); margin-top: 8px;";
+      warningDiv.innerHTML = `
+        <i class="fa-solid fa-exclamation-triangle"></i> 
+        Mode de saisie libre (onglet "Eleves" non accessible)
+      `;
+      container.appendChild(warningDiv);
+    }
+  }
+
+  function initMenu(data){
+    MENU = data || [];
+    ["repas","boissons","autres","cartes"].forEach(c => q("#col-"+c).innerHTML="");
+
+    MENU.forEach(item => {
+      if (item.categorie.toLowerCase().includes("regime") || !item.actif) return;
+      
+      const btn = document.createElement("button");
+      btn.innerHTML = `
+        <span class="item-name">${item.article}</span>
+        <span class="item-price">${RiptideHelpers.formatPrice(item.prix)} €</span>
+      `;
+      btn.onclick = () => ajouterArticle(item.categorie, item.article, item.prix);
+
+      const catLower = item.categorie.toLowerCase();
+      const id = catLower.includes("repas") ? "col-repas" :
+                catLower.includes("boisson") ? "col-boissons" :
+                catLower.includes("carte") ? "col-cartes" : "col-autres";
+      q("#" + id).appendChild(btn);
+    });
+    
+    console.log(`🍽️ ${MENU.length} articles de menu chargés en ${performanceTracker.menuLoadTime}ms`);
+  }
+
+  // 🚀 AFFICHAGE DE L'INDICATEUR DE PERFORMANCE
+  function showPerformanceIndicator() {
+    performanceTracker.totalLoadTime = Date.now() - performanceTracker.startTime;
+    
+    const indicator = q("#performanceIndicator");
+    const loadTimeSpan = q("#loadTime");
+    
+    loadTimeSpan.textContent = performanceTracker.totalLoadTime;
+    
+    // Couleur selon la performance
+    if (performanceTracker.totalLoadTime < 1000) {
+      indicator.style.background = "var(--success-green)";
+      indicator.innerHTML = `⚡ Chargé en <span id="loadTime">${performanceTracker.totalLoadTime}</span>ms - Ultra rapide !`;
+    } else if (performanceTracker.totalLoadTime < 2000) {
+      indicator.style.background = "var(--accent-yellow)";
+      indicator.innerHTML = `🚀 Chargé en <span id="loadTime">${performanceTracker.totalLoadTime}</span>ms - Rapide`;
+    } else {
+      indicator.style.background = "var(--warning-orange)";
+      indicator.innerHTML = `⏳ Chargé en <span id="loadTime">${performanceTracker.totalLoadTime}</span>ms - Correct`;
+    }
+    
+    // Afficher l'indicateur
+    indicator.classList.add("show");
+    
+    // Masquer après 3 secondes
+    setTimeout(() => {
+      indicator.classList.remove("show");
+    }, 3000);
+    
+    console.log(`🚀 Performance totale: ${performanceTracker.totalLoadTime}ms (Élèves: ${performanceTracker.elevesLoadTime}ms, Menu: ${performanceTracker.menuLoadTime}ms)`);
+  }
+
+  function ajouterArticle(cat,article,prix){
+    let e=PANIER.find(p=>p.article===article&&p.prix===prix);
+    e?e.qte++:PANIER.push({categorie:cat,article,prix,qte:1});
+    renderPanier(); 
+    RiptideHelpers.showMessage("");
+    RiptideHelpers.updateSubmitButton();
+  }
+  
+  function supprimerItem(i){ 
+    PANIER.splice(i,1); 
+    renderPanier(); 
+    RiptideHelpers.updateSubmitButton();
+  }
+  
+  function incrementerQte(i){ 
+    PANIER[i].qte++; 
+    renderPanier(); 
+    RiptideHelpers.updateSubmitButton();
+  }
+  
+  function decrementerQte(i){ 
+    PANIER[i].qte>1?PANIER[i].qte--:PANIER.splice(i,1); 
+    renderPanier(); 
+    RiptideHelpers.updateSubmitButton();
+  }
+
+  function renderPanier(){
+    q("#tbody").innerHTML=PANIER.map((p,i)=>`
+      <tr>
+        <td>${p.article}</td>
+        <td>
+          <div class="cart-quantity-controls">
+            <button class="btn-icon-sm btn-decrement" onclick="decrementerQte(${i})">-</button>
+            <span>${p.qte}</span>
+            <button class="btn-icon-sm btn-increment" onclick="incrementerQte(${i})">+</button>
+          </div>
+        </td>
+        <td>${RiptideHelpers.formatPrice(p.prix)}€</td>
+        <td>${RiptideHelpers.formatPrice(p.qte*p.prix)}€</td>
+        <td><button class="btn-icon-sm btn-delete" onclick="supprimerItem(${i})"><i class="fa-solid fa-trash-can"></i></button></td>
+      </tr>`).join("");
+    q("#total").textContent=RiptideHelpers.formatPrice(PANIER.reduce((s,p)=>s+p.qte*p.prix,0));
+    
+    // 💳 Vérifier si le solde de la carte est toujours suffisant
+    verifierSoldeCarte();
+  }
+
+  function choisirPaiement(methode, e) {
+    console.log("Mode paiement:", methode);
+    
+    q("#paiement").value = methode;
+    RiptideHelpers.showMessage("");
+    document.querySelectorAll(".pay-buttons button").forEach(b => b.classList.remove("selected"));
+    e.currentTarget.classList.add("selected");
+    
+    const carteInfoDiv = q("#carteRiptideInfo");
+    
+    if (methode === 'Carte Riptide') {
+      const input = q("#inputEleve");
+      const nom = input.value.trim();
+      
+      if (!nom || !isValidEleve) {
+        carteInfoDiv.style.display = "block";
+        carteInfoDiv.innerHTML = `
+          <div style="color:var(--warning-orange); text-align:center;">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            Veuillez d'abord sélectionner votre nom
+          </div>
+        `;
+        RiptideHelpers.updateSubmitButton();
+        return;
+      }
+      
+      const nomParts = nom.split(' ').filter(part => part.length > 0);
+      
+      if (nomParts.length < 2) {
+        carteInfoDiv.style.display = "block";
+        carteInfoDiv.innerHTML = `
+          <div style="color:var(--warning-orange); text-align:center;">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            Format invalide. Attendu: "Prénom Nom"
+          </div>
+        `;
+        RiptideHelpers.updateSubmitButton();
+        return;
+      }
+      
+      const prenom = nomParts[0];
+      const nomFamille = nomParts.slice(1).join(' ');
+      
+      carteInfoDiv.style.display = "block";
+      carteInfoDiv.innerHTML = `
+        <div style="text-align:center; color:var(--text-light);">
+          <i class="fa-solid fa-spinner fa-spin"></i> Vérification de votre carte...
+          <div style="font-size:0.9em; margin-top:8px;">Recherche: ${prenom} ${nomFamille}</div>
+        </div>
+      `;
+      
+      console.log("Debut appel getCarteRiptide:", prenom, nomFamille);
+      
+      // Timeout de 8 secondes
+      const timeoutId = setTimeout(() => {
+        console.error("TIMEOUT atteint");
+        carteInfoDiv.innerHTML = `
+          <div style="color:var(--danger-red); text-align:center;">
+            <i class="fa-solid fa-xmark"></i> La vérification prend trop de temps.
+            <div style="margin-top:12px; padding:12px; background:rgba(255,107,107,0.1); border-radius:8px; font-size:0.9em;">
+              <strong>Pour continuer :</strong><br>
+              Choisissez Espèces ou Carte bancaire, ou réessayez plus tard.
+            </div>
+            <button onclick="choisirAutrePaiement()" 
+                    style="display:block; margin:12px auto; padding:10px 20px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer;">
+              Choisir autre paiement
+            </button>
+          </div>
+        `;
+      }, 8000);
+      
+      // Test simple : appeler d'abord getEleves pour vérifier que les appels fonctionnent
+      google.script.run
+        .withSuccessHandler(function(elevesTest) {
+          console.log("Test connexion OK, appel getCarteRiptide...");
+          
+          // Maintenant appeler getCarteRiptide
+          google.script.run
+            .withSuccessHandler(function(result) {
+              clearTimeout(timeoutId);
+              console.log("Reponse recue:", result);
+              afficherInfoCarte(result, nom);
+            })
+            .withFailureHandler(function(err) {
+              clearTimeout(timeoutId);
+              console.error("Erreur:", err);
+              carteInfoDiv.innerHTML = `
+                <div style="color:var(--danger-red); text-align:center;">
+                  <i class="fa-solid fa-xmark"></i> Erreur: ${err.message || 'Erreur serveur'}
+                  <button onclick="choisirAutrePaiement()" 
+                          style="display:block; margin:12px auto; padding:10px 20px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer;">
+                    Choisir autre paiement
+                  </button>
+                </div>
+              `;
+            })
+            .getCarteRiptide(prenom, nomFamille);
+        })
+        .withFailureHandler(function(err) {
+          clearTimeout(timeoutId);
+          console.error("Erreur connexion:", err);
+          carteInfoDiv.innerHTML = `
+            <div style="color:var(--danger-red); text-align:center;">
+              <i class="fa-solid fa-xmark"></i> Problème de connexion au serveur
+              <button onclick="choisirAutrePaiement()" 
+                      style="display:block; margin:12px auto; padding:10px 20px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer;">
+                Choisir autre paiement
+              </button>
+            </div>
+          `;
+        })
+        .getEleves();
+        
+    } else {
+      carteInfoDiv.style.display = "none";
+      delete q("#paiement").dataset.carteInfo;
+    }
+    
+    RiptideHelpers.updateSubmitButton();
+  }
+  function retryCarteCheck(prenom, nomFamille, nomComplet) {
+    const carteInfoDiv = q("#carteRiptideInfo");
+    
+    carteInfoDiv.innerHTML = `
+      <div style="text-align:center; color:var(--text-light);">
+        <i class="fa-solid fa-spinner fa-spin"></i> Nouvelle tentative...
+      </div>
+    `;
+    
+    const timeoutId = setTimeout(() => {
+      carteInfoDiv.innerHTML = `
+        <div style="color:var(--danger-red); text-align:center;">
+          <i class="fa-solid fa-xmark"></i> Impossible de vérifier la carte. Choisissez un autre mode de paiement.
+          <button onclick="choisirAutrePaiement()" 
+                  style="display:block; margin:12px auto; padding:8px 16px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer;">
+            Choisir autre paiement
+          </button>
+        </div>
+      `;
+    }, 10000);
+    
+    google.script.run
+      .withSuccessHandler(result => {
+        clearTimeout(timeoutId);
+        afficherInfoCarte(result, nomComplet);
+      })
+      .withFailureHandler(err => {
+        clearTimeout(timeoutId);
+        carteInfoDiv.innerHTML = `
+          <div style="color:var(--danger-red); text-align:center;">
+            <i class="fa-solid fa-xmark"></i> Erreur persistante: ${err.message || 'Erreur inconnue'}
+            <button onclick="choisirAutrePaiement()" 
+                    style="display:block; margin:12px auto; padding:8px 16px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer;">
+            Choisir autre paiement
+          </button>
+          </div>
+        `;
+      })
+      .getCarteRiptide(prenom, nomFamille);
+  }
+  function afficherInfoCarte(result, nomComplet) {
+    console.log("Affichage info carte:", result);
+    
+    const carteInfoDiv = q("#carteRiptideInfo");
+    const total = parseFloat(q("#total").textContent) || 0;
+    
+    // Stocker les infos globalement
+    carteRiptideInfo = result;
+    
+    if (!result.success) {
+      carteInfoDiv.innerHTML = `
+        <div style="text-align:center; color:var(--danger-red);">
+          <i class="fa-solid fa-xmark"></i> Erreur: ${result.error || 'Erreur inconnue'}
+        </div>
+      `;
+      return;
+    }
+    
+    if (!result.hasCarte) {
+      carteInfoDiv.innerHTML = `
+        <div style="text-align:center;">
+          <div style="font-size:1.2em; color:var(--warning-orange); margin-bottom:12px;">
+            <i class="fa-solid fa-credit-card"></i> Aucune carte Riptide trouvée
+          </div>
+          <p style="color:var(--text-dark); margin:8px 0;">
+            Vous pouvez commander une carte Riptide 10€ (11€ crédités) dans le menu.
+          </p>
+          <button onclick="choisirAutrePaiement()" style="margin-top:12px; padding:10px 20px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer; font-size:1rem;">
+            Choisir un autre mode de paiement
+          </button>
+        </div>
+      `;
+      return;
+    }
+    
+    const creditRestant = result.creditRestant || 0;
+    const soldeInsuffisant = creditRestant < total;
+    const montantManquant = soldeInsuffisant ? (total - creditRestant).toFixed(2) : 0;
+    
+    if (soldeInsuffisant) {
+      carteInfoDiv.innerHTML = `
+        <div style="text-align:center;">
+          <div style="font-size:1.3em; color:var(--warning-orange); margin-bottom:12px;">
+            <i class="fa-solid fa-exclamation-triangle"></i> Solde insuffisant
+          </div>
+          <div style="background:white; padding:16px; border-radius:8px; margin-bottom:16px;">
+            <div style="font-size:0.9em; color:var(--text-light); margin-bottom:4px;">Votre solde actuel</div>
+            <div style="font-size:2em; font-weight:700; color:var(--accent-primary);">${creditRestant.toFixed(2)} €</div>
+            <div style="font-size:0.9em; color:var(--text-light); margin-top:4px;">Total commande: ${total.toFixed(2)} €</div>
+            <div style="font-size:1.1em; font-weight:600; color:var(--danger-red); margin-top:8px;">
+              Manquant: ${montantManquant} €
+            </div>
+          </div>
+          <p style="color:var(--text-dark); margin:12px 0;">
+            Votre carte sera débitée de ${creditRestant.toFixed(2)} €.<br>
+            Comment souhaitez-vous payer les ${montantManquant} € restants ?
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px;">
+            <button onclick="completerPaiement('Espèces')" style="padding:10px; background:var(--success-green); color:white; border:none; border-radius:8px; cursor:pointer;">
+              <i class="fa-solid fa-money-bill-wave"></i> Espèces
+            </button>
+            <button onclick="completerPaiement('Carte bancaire')" style="padding:10px; background:var(--accent-secondary); color:white; border:none; border-radius:8px; cursor:pointer;">
+              <i class="fa-regular fa-credit-card"></i> CB
+            </button>
+          </div>
+          <button onclick="choisirAutrePaiement()" style="margin-top:12px; padding:8px 16px; background:transparent; color:var(--text-light); border:1px solid var(--border-color); border-radius:8px; cursor:pointer; font-size:0.9rem;">
+            Annuler et choisir autre paiement
+          </button>
+        </div>
+      `;
+    } else {
+      carteInfoDiv.innerHTML = `
+        <div style="text-align:center;">
+          <div style="font-size:1.2em; color:var(--success-green); margin-bottom:12px;">
+            <i class="fa-solid fa-check-circle"></i> Solde suffisant
+          </div>
+          <div style="background:white; padding:16px; border-radius:8px; margin-bottom:12px;">
+            <div style="font-size:0.9em; color:var(--text-light); margin-bottom:4px;">Votre solde actuel</div>
+            <div style="font-size:2em; font-weight:700; color:var(--success-green);">${creditRestant.toFixed(2)} €</div>
+            <div style="font-size:0.9em; color:var(--text-light); margin-top:4px;">Total commande: ${total.toFixed(2)} €</div>
+            <div style="font-size:1.1em; font-weight:600; color:var(--accent-secondary); margin-top:8px;">
+              Solde après: ${(creditRestant - total).toFixed(2)} €
+            </div>
+          </div>
+          <p style="color:var(--success-green); font-weight:600;">
+            <i class="fa-solid fa-check"></i> Vous pouvez payer avec votre carte !
+          </p>
+        </div>
+      `;
+    }
+    
+    // Stocker les infos pour la validation
+    q("#paiement").dataset.carteInfo = JSON.stringify({
+      hasCarte: result.hasCarte,
+      creditRestant: creditRestant,
+      soldeInsuffisant: soldeInsuffisant,
+      montantManquant: montantManquant
+    });
+    
+    RiptideHelpers.updateSubmitButton();
+  }
+
+  function completerPaiement(methodeComplement) {
+    const carteInfo = JSON.parse(q("#paiement").dataset.carteInfo || '{}');
+    
+    // Mode mixte: Carte Riptide + Complément
+    q("#paiement").value = `Carte Riptide + ${methodeComplement}`;
+    q("#paiement").dataset.modeMixte = 'true';
+    q("#paiement").dataset.methodeComplement = methodeComplement;
+    
+    const carteInfoDiv = q("#carteRiptideInfo");
+    carteInfoDiv.innerHTML = `
+      <div style="text-align:center; padding:12px; background:var(--success-green); color:white; border-radius:8px;">
+        <i class="fa-solid fa-check"></i> Paiement mixte sélectionné:<br>
+        <strong>Carte Riptide (${carteInfo.creditRestant.toFixed(2)} €) + ${methodeComplement} (${carteInfo.montantManquant} €)</strong>
+      </div>
+    `;
+    
+    RiptideHelpers.updateSubmitButton();
+  }
+
+  function choisirAutrePaiement() {
+    document.querySelectorAll(".pay-buttons button").forEach(b => b.classList.remove("selected"));
+    q("#paiement").value = "";
+    q("#carteRiptideInfo").style.display = "none";
+    RiptideHelpers.updateSubmitButton();
+  }
+
+  function showTicket(res, provisional=false){
+    const items=PANIER.map(p=>`
+      <div class="ticket-line">
+        <span>${p.qte}x ${p.article}</span>
+        <span>${RiptideHelpers.formatPrice(p.qte*p.prix)}€</span>
+      </div>`).join("");
+    const total=RiptideHelpers.formatPrice(PANIER.reduce((s,p)=>s+p.qte*p.prix,0));
+    const commentaire = q("#commentaire").value.trim();
+
+    // Récupérer le nom depuis l'input
+    const nom = q("#inputEleve").value;
+
+    q("#ticketBody").innerHTML=`
+        <div class="ticket-header"><i class="fa-solid fa-receipt"></i>Riptide BDE</div>
+        <div class="ticket-body">
+            <div class="ticket-order-highlight">
+                <span>Commande N°</span>
+                <strong id="ticket-num">${res.numero||"?"}</strong>
+            </div>
+            <div class="ticket-info">
+                <div><b>Élève :</b> ${nom}</div>
+                <div><b>Paiement :</b> ${q("#paiement").value}</div>
+                ${commentaire ? `<div><b>Commentaire :</b> ${commentaire}</div>` : ""}
+            </div>
+            <div class="ticket-sep"></div>
+            ${items}
+        </div>
+        <div class="ticket-total"><span>Total</span><span>${total}€</span></div>
+        <div class="ticket-footer">
+          Merci pour ton aventure avec nous !
+        </div>
+    `;
+    
+    // Charger un GIF aléatoire
+    const rand = Math.floor(Math.random() * gifsPatience.length);
+    q("#patienceGif").src = gifsPatience[rand];
+    
+    q("#ticket").style.display="flex";
+  }
+  function changerGif() {
+    const img = q("#patienceGif");
+    const currentSrc = img.src;
+    let availableGifs = gifsPatience.filter(gif => gif !== currentSrc);
+    
+    // Si tous les gifs ont été vus, réinitialiser
+    if (availableGifs.length === 0) {
+      availableGifs = gifsPatience;
+    }
+    
+    const rand = Math.floor(Math.random() * availableGifs.length);
+    
+    // Animation de fondu
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+      img.src = availableGifs[rand];
+      img.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      setTimeout(() => {
+        img.style.opacity = '1';
+        img.style.transform = 'scale(1)';
+      }, 50);
+    }, 300);
+  }
+  function updateTicketNumero(numero){
+    const el=q("#ticket-num");
+    if(el) el.textContent=numero;
+  }
+  
+  function closeTicket() {
+      q("#ticket").style.display="none";
+  }
+
+  const gifsPatience = [
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDA4aHNreWh4YmU3N3VmMzdoNDF6aDkxMm4yeDVqMnFzM2xyZHF0dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tXL4FHPSnVJ0A/giphy.gif", 
+    "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", 
+    "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif", 
+    "https://media.giphy.com/media/l41YtZOb9EUABnuqA/giphy.gif", 
+    "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif", 
+    "https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif",
+    "https://media.giphy.com/media/rZpcEVcAedT4UPfJlS/giphy.gif",
+    "https://media.giphy.com/media/xTqc08Vz0A2RmOhnsq/giphy.gif",
+    "https://media.giphy.com/media/5BmuJpLirqdkAnBs8m/giphy.gif",
+    "https://media.giphy.com/media/0ul61C88dR8jf9OsVP/giphy.gif",
+    "https://media.giphy.com/media/2sp5JOrEwMPhXtYL9s/giphy.gif",
+    "https://media.giphy.com/media/mb1bYWnx9mWpLxc5P4/giphy.gif",
+    "https://media.giphy.com/media/rc1rFKiDdzZuTHpIkG/giphy.gif",
+    "https://media.giphy.com/media/UkgKfiQ6rWOkZU0PdG/giphy.gif",
+    "https://media.giphy.com/media/SrPnDBdFAL6f320jzQ/giphy.gif",
+    "https://media.giphy.com/media/k67nFCRIE9US861k4c/giphy.gif",
+    "https://media.giphy.com/media/E0xxpCoq1VZl87447R/giphy.gif"
+  ];
+  
+  function valider(){
+    console.log("🔧 Validation commande");
+    
+    if (!isValidEleve) {
+      return RiptideHelpers.showMessage("Veuillez sélectionner un élève valide.", true);
+    }
+    
+    const input = q("#inputEleve");
+    const nom = input.value.trim();
+    const paiement = q("#paiement").value;
+    const commentaire = q("#commentaire").value.trim();
+
+    if (!nom) {
+      return RiptideHelpers.showMessage("Veuillez saisir un nom.", true);
+    }
+    
+    if (!PANIER.length) {
+      return RiptideHelpers.showMessage("Ajoutez au moins un article.", true);
+    }
+    
+    if (!paiement) {
+      return RiptideHelpers.showMessage("Choisissez un mode de paiement.", true);
+    }
+
+    // 💳 Validation pour Carte Riptide
+    if (paiement.includes("Carte Riptide")) {
+      const carteInfo = q("#paiement").dataset.carteInfo;
+      
+      if (!carteInfo) {
+        return RiptideHelpers.showMessage("Informations de carte manquantes. Veuillez resélectionner le mode de paiement.", true);
+      }
+      
+      const info = JSON.parse(carteInfo);
+      
+      if (!info.hasCarte) {
+        return RiptideHelpers.showMessage("Vous n'avez pas de Carte Riptide.", true);
+      }
+      
+      const total = PANIER.reduce((s,p) => s + p.qte * p.prix, 0);
+      
+      // Si paiement uniquement par carte, vérifier le solde
+      if (paiement === "Carte Riptide" && info.creditRestant < total) {
+        return RiptideHelpers.showMessage("Solde insuffisant. Veuillez compléter le paiement.", true);
+      }
+      
+      // Si paiement mixte, vérifier qu'un complément a été choisi
+      if (paiement.includes('+') && !q("#paiement").dataset.methodeComplement) {
+        return RiptideHelpers.showMessage("Mode de paiement mixte incomplet.", true);
+      }
+    }
+
+    RiptideHelpers.disableSubmit(true);
+    showTicket({numero:"En attente..."}, true);
+
+    envoyerCommande(nom, commentaire, paiement);
+  }
+  function envoyerCommande(nom, commentaire, paiement) {
+    console.log("📤 Envoi commande:", nom, paiement);
+    
+    google.script.run
+      .withSuccessHandler(res => {
+        console.log("✅ Commande créée:", res);
+        updateTicketNumero(res.numero || "?");
+        RiptideHelpers.disableSubmit(false);
+        RiptideHelpers.resetForm();
+        RiptideHelpers.showMessage("Commande enregistrée avec succès!", false);
+      })
+      .withFailureHandler(err => {
+        console.error("❌ ERREUR:", err);
+        updateTicketNumero("Erreur");
+        RiptideHelpers.showMessage("Erreur: " + err.message, true);
+        RiptideHelpers.disableSubmit(false);
+        closeTicket();
+      })
+      .ajouterCommande(nom, commentaire, JSON.stringify(PANIER), paiement, null);
+  }
+  // Ajouter après la fonction renderPanier()
+  function verifierSoldeCarte() {
+    const paiement = q("#paiement").value;
+    
+    if (!paiement.includes("Carte Riptide")) return;
+    
+    const carteInfo = q("#paiement").dataset.carteInfo;
+    if (!carteInfo) return;
+    
+    const info = JSON.parse(carteInfo);
+    const total = PANIER.reduce((s,p) => s + p.qte * p.prix, 0);
+    
+    // Recalculer l'affichage si le total a changé
+    if (info.hasCarte) {
+      const nomComplet = q("#inputEleve").value.trim();
+      const nomParts = nomComplet.split(' ');
+      if (nomParts.length >= 2) {
+        const prenom = nomParts[0];
+        const nomFamille = nomParts.slice(1).join(' ');
+        
+        google.script.run
+          .withSuccessHandler(result => afficherInfoCarte(result, nomComplet))
+          .withFailureHandler(err => console.error("Erreur refresh carte:", err))
+          .getCarteRiptide(prenom, nomFamille);
+      }
+    }
+  }
+</script>
+</body>
+</html>
