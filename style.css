@@ -327,13 +327,16 @@ body {
     box-shadow: 0 15px 40px rgba(26, 26, 46, 0.15);
 }
 
-/* APERÇU DES PROJETS WEB - VERSION AGRANDIE */
+/* APERÇU DES PROJETS WEB - VERSION AGRANDIE ET CENTRÉE */
 .project-image {
     aspect-ratio: 16/9;
     overflow: hidden;
     position: relative;
     min-height: 500px;   /* Hauteur augmentée pour mieux voir */
     border: 2px solid rgba(26, 26, 46, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .project-image iframe {
@@ -341,6 +344,9 @@ body {
     height: 100%;
     border: none;
     pointer-events: none; /* Empêche l'interaction dans l'aperçu */
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .project-image img {
