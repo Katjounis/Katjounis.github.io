@@ -327,7 +327,7 @@ body {
     box-shadow: 0 15px 40px rgba(26, 26, 46, 0.15);
 }
 
-/* APERÇU DES PROJETS WEB - VERSION AGRANDIE ET CENTRÉE */
+/* APERÇU DES PROJETS WEB - VERSION AGRANDIE AVEC VUE COMPLÈTE */
 .project-image {
     aspect-ratio: 16/9;
     overflow: hidden;
@@ -337,16 +337,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #f8f9fa;
 }
 
 .project-image iframe {
-    width: 100%;
-    height: 100%;
+    width: 200%;      /* Largeur augmentée */
+    height: 200%;     /* Hauteur augmentée */
     border: none;
     pointer-events: none; /* Empêche l'interaction dans l'aperçu */
+    transform: scale(0.5); /* Réduit à 50% pour voir toute la page */
+    transform-origin: center center; /* Centre la réduction */
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    margin-left: -100%; /* Recentre horizontalement */
+    margin-top: -100%;  /* Recentre verticalement */
 }
 
 .project-image img {
